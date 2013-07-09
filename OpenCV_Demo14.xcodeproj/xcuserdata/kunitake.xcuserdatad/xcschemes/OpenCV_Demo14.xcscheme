@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2B26091417865C0000BE100A"
-               BuildableName = "OpenCV_Demo04.app"
+               BuildableName = "OpenCV_Demo14.app"
                BlueprintName = "OpenCV_Demo14"
                ReferencedContainer = "container:OpenCV_Demo14.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B26091417865C0000BE100A"
-            BuildableName = "OpenCV_Demo04.app"
+            BuildableName = "OpenCV_Demo14.app"
             BlueprintName = "OpenCV_Demo14"
             ReferencedContainer = "container:OpenCV_Demo14.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B26091417865C0000BE100A"
-            BuildableName = "OpenCV_Demo04.app"
+            BuildableName = "OpenCV_Demo14.app"
             BlueprintName = "OpenCV_Demo14"
             ReferencedContainer = "container:OpenCV_Demo14.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2B26091417865C0000BE100A"
-            BuildableName = "OpenCV_Demo04.app"
+            BuildableName = "OpenCV_Demo14.app"
             BlueprintName = "OpenCV_Demo14"
             ReferencedContainer = "container:OpenCV_Demo14.xcodeproj">
          </BuildableReference>

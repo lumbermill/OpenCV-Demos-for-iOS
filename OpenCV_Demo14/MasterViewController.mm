@@ -115,7 +115,7 @@
             cell.textLabel.text = @"輪郭検出 Laplacian";
             break;
         case 9:
-            cell.textLabel.text = @"-";
+            cell.textLabel.text = @"輪郭検出 Canny";
             break;
         case 10:
             cell.textLabel.text = @"-";
