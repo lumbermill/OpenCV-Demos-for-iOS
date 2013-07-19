@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2255669C17994A040015F7B9 /* haarcascade_eye.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2255669A17994A040015F7B9 /* haarcascade_eye.xml */; };
+		2255669D17994A040015F7B9 /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2255669B17994A040015F7B9 /* haarcascade_frontalface_alt.xml */; };
+		225566A017994FE20015F7B9 /* FaceDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2255669F17994FE20015F7B9 /* FaceDetection.mm */; };
+		225566A1179966F20015F7B9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092A17865C0000BE100A /* Default.png */; };
+		225566A2179967050015F7B9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092C17865C0000BE100A /* Default@2x.png */; };
+		225566A31799670F0015F7B9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092E17865C0000BE100A /* Default-568h@2x.png */; };
+		225566A617996B950015F7B9 /* converters.xml in Resources */ = {isa = PBXBuildFile; fileRef = 225566A517996B950015F7B9 /* converters.xml */; };
+		225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 225566AB1799749C0015F7B9 /* libxml2.dylib */; };
+		22933DB21798DA44001EB809 /* Converter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22933DB11798DA44001EB809 /* Converter.mm */; };
+		22933DBB1798DC66001EB809 /* NegaPosi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22933DBA1798DC66001EB809 /* NegaPosi.mm */; };
 		2B26091917865C0000BE100A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26091817865C0000BE100A /* UIKit.framework */; };
 		2B26091B17865C0000BE100A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26091A17865C0000BE100A /* Foundation.framework */; };
 		2B26091D17865C0000BE100A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26091C17865C0000BE100A /* CoreGraphics.framework */; };
 		2B26092317865C0000BE100A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092117865C0000BE100A /* InfoPlist.strings */; };
 		2B26092517865C0000BE100A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B26092417865C0000BE100A /* main.m */; };
-		2B26092917865C0000BE100A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B26092817865C0000BE100A /* AppDelegate.m */; };
-		2B26092B17865C0000BE100A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092A17865C0000BE100A /* Default.png */; };
-		2B26092D17865C0000BE100A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092C17865C0000BE100A /* Default@2x.png */; };
-		2B26092F17865C0000BE100A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B26092E17865C0000BE100A /* Default-568h@2x.png */; };
+		2B26092917865C0000BE100A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B26092817865C0000BE100A /* AppDelegate.mm */; };
 		2B26093217865C0000BE100A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B26093017865C0000BE100A /* MainStoryboard.storyboard */; };
 		2B26093517865C0000BE100A /* MasterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B26093417865C0000BE100A /* MasterViewController.mm */; };
 		2B26093817865C0000BE100A /* DetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B26093717865C0000BE100A /* DetailViewController.mm */; };
@@ -23,25 +30,33 @@
 		2B26094117865F0100BE100A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26094017865F0100BE100A /* CoreMedia.framework */; };
 		2B26094317865F3B00BE100A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26094217865F3B00BE100A /* CoreVideo.framework */; };
 		2B26094A1786602800BE100A /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B2609491786602800BE100A /* Utils.mm */; };
-		2B45A575178BDD7200662FDA /* haarcascade_eye.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2B45A574178BDD7200662FDA /* haarcascade_eye.xml */; };
-		2B45A577178BDD7E00662FDA /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2B45A576178BDD7E00662FDA /* haarcascade_frontalface_alt.xml */; };
 		2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B45A57E178BE6D500662FDA /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B26091517865C0000BE100A /* OpenCV_Demo14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCV_Demo14.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2255669A17994A040015F7B9 /* haarcascade_eye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_eye.xml; path = OpenCVDemos/Resources.xml/Cascades/haarcascade_eye.xml; sourceTree = SOURCE_ROOT; };
+		2255669B17994A040015F7B9 /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_alt.xml; path = OpenCVDemos/Resources.xml/Cascades/haarcascade_frontalface_alt.xml; sourceTree = SOURCE_ROOT; };
+		2255669E17994FE20015F7B9 /* FaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetection.h; sourceTree = "<group>"; };
+		2255669F17994FE20015F7B9 /* FaceDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetection.mm; sourceTree = "<group>"; };
+		225566A517996B950015F7B9 /* converters.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = converters.xml; sourceTree = "<group>"; };
+		225566AB1799749C0015F7B9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		22933DB01798DA44001EB809 /* Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Converter.h; sourceTree = "<group>"; };
+		22933DB11798DA44001EB809 /* Converter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Converter.mm; sourceTree = "<group>"; };
+		22933DB91798DC66001EB809 /* NegaPosi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegaPosi.h; sourceTree = "<group>"; };
+		22933DBA1798DC66001EB809 /* NegaPosi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NegaPosi.mm; sourceTree = "<group>"; };
+		2B26091517865C0000BE100A /* OpenCVDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B26091817865C0000BE100A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B26091A17865C0000BE100A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2B26091C17865C0000BE100A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2B26092017865C0000BE100A /* OpenCV_Demo14-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenCV_Demo14-Info.plist"; sourceTree = "<group>"; };
+		2B26092017865C0000BE100A /* OpenCVDemos-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenCVDemos-Info.plist"; sourceTree = "<group>"; };
 		2B26092217865C0000BE100A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2B26092417865C0000BE100A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2B26092617865C0000BE100A /* OpenCV_Demo14-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenCV_Demo14-Prefix.pch"; sourceTree = "<group>"; };
+		2B26092617865C0000BE100A /* OpenCVDemos-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenCVDemos-Prefix.pch"; sourceTree = "<group>"; };
 		2B26092717865C0000BE100A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2B26092817865C0000BE100A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2B26092A17865C0000BE100A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		2B26092C17865C0000BE100A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		2B26092E17865C0000BE100A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2B26092817865C0000BE100A /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		2B26092A17865C0000BE100A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources.xml/Default.png; sourceTree = "<group>"; };
+		2B26092C17865C0000BE100A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources.xml/Default@2x.png"; sourceTree = "<group>"; };
+		2B26092E17865C0000BE100A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources.xml/Default-568h@2x.png"; sourceTree = "<group>"; };
 		2B26093117865C0000BE100A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2B26093317865C0000BE100A /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		2B26093417865C0000BE100A /* MasterViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MasterViewController.mm; sourceTree = "<group>"; };
@@ -52,8 +67,6 @@
 		2B26094217865F3B00BE100A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2B2609481786602800BE100A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		2B2609491786602800BE100A /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
-		2B45A574178BDD7200662FDA /* haarcascade_eye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_eye.xml; sourceTree = "<group>"; };
-		2B45A576178BDD7E00662FDA /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
 		2B45A57E178BE6D500662FDA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */,
 				2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */,
 				2B26094317865F3B00BE100A /* CoreVideo.framework in Frameworks */,
 				2B26091D17865C0000BE100A /* CoreGraphics.framework in Frameworks */,
@@ -75,10 +89,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		225566A417996B950015F7B9 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				225566A517996B950015F7B9 /* converters.xml */,
+			);
+			name = Layouts;
+			path = OpenCVDemos/Resources.xml/Layouts;
+			sourceTree = SOURCE_ROOT;
+		};
+		22933DA51798D397001EB809 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2B2609481786602800BE100A /* Utils.h */,
+				2B2609491786602800BE100A /* Utils.mm */,
+				22933DA91798D735001EB809 /* Converters */,
+				22933DB01798DA44001EB809 /* Converter.h */,
+				22933DB11798DA44001EB809 /* Converter.mm */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		22933DA91798D735001EB809 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				22933DB91798DC66001EB809 /* NegaPosi.h */,
+				22933DBA1798DC66001EB809 /* NegaPosi.mm */,
+				2255669E17994FE20015F7B9 /* FaceDetection.h */,
+				2255669F17994FE20015F7B9 /* FaceDetection.mm */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
+		22DD29461799466F002C6EF5 /* Resouces */ = {
+			isa = PBXGroup;
+			children = (
+				225566A417996B950015F7B9 /* Layouts */,
+				22DD29471799468D002C6EF5 /* Cascades */,
+			);
+			path = Resouces;
+			sourceTree = "<group>";
+		};
+		22DD29471799468D002C6EF5 /* Cascades */ = {
+			isa = PBXGroup;
+			children = (
+				2255669A17994A040015F7B9 /* haarcascade_eye.xml */,
+				2255669B17994A040015F7B9 /* haarcascade_frontalface_alt.xml */,
+			);
+			name = Cascades;
+			path = OpenCVDemos/Resources.xml/Cascades;
+			sourceTree = "<group>";
+		};
 		2B26090C17865C0000BE100A = {
 			isa = PBXGroup;
 			children = (
-				2B26091E17865C0000BE100A /* OpenCV_Demo14 */,
+				225566AB1799749C0015F7B9 /* libxml2.dylib */,
+				2B26091E17865C0000BE100A /* OpenCVDemos */,
 				2B26091717865C0000BE100A /* Frameworks */,
 				2B26091617865C0000BE100A /* Products */,
 			);
@@ -87,7 +153,7 @@
 		2B26091617865C0000BE100A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B26091517865C0000BE100A /* OpenCV_Demo14.app */,
+				2B26091517865C0000BE100A /* OpenCVDemos.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,32 +172,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2B26091E17865C0000BE100A /* OpenCV_Demo14 */ = {
+		2B26091E17865C0000BE100A /* OpenCVDemos */ = {
 			isa = PBXGroup;
 			children = (
+				22DD29461799466F002C6EF5 /* Resouces */,
+				22933DA51798D397001EB809 /* Classes */,
 				2B26092717865C0000BE100A /* AppDelegate.h */,
-				2B26092817865C0000BE100A /* AppDelegate.m */,
+				2B26092817865C0000BE100A /* AppDelegate.mm */,
 				2B26093017865C0000BE100A /* MainStoryboard.storyboard */,
 				2B26093317865C0000BE100A /* MasterViewController.h */,
 				2B26093417865C0000BE100A /* MasterViewController.mm */,
 				2B26093617865C0000BE100A /* DetailViewController.h */,
 				2B26093717865C0000BE100A /* DetailViewController.mm */,
-				2B2609481786602800BE100A /* Utils.h */,
-				2B2609491786602800BE100A /* Utils.mm */,
-				2B45A574178BDD7200662FDA /* haarcascade_eye.xml */,
-				2B45A576178BDD7E00662FDA /* haarcascade_frontalface_alt.xml */,
 				2B26091F17865C0000BE100A /* Supporting Files */,
 			);
-			path = OpenCV_Demo14;
+			path = OpenCVDemos;
 			sourceTree = "<group>";
 		};
 		2B26091F17865C0000BE100A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2B26092017865C0000BE100A /* OpenCV_Demo14-Info.plist */,
+				2B26092017865C0000BE100A /* OpenCVDemos-Info.plist */,
 				2B26092117865C0000BE100A /* InfoPlist.strings */,
 				2B26092417865C0000BE100A /* main.m */,
-				2B26092617865C0000BE100A /* OpenCV_Demo14-Prefix.pch */,
+				2B26092617865C0000BE100A /* OpenCVDemos-Prefix.pch */,
 				2B26092A17865C0000BE100A /* Default.png */,
 				2B26092C17865C0000BE100A /* Default@2x.png */,
 				2B26092E17865C0000BE100A /* Default-568h@2x.png */,
@@ -142,9 +206,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B26091417865C0000BE100A /* OpenCV_Demo14 */ = {
+		2B26091417865C0000BE100A /* OpenCVDemos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B26093B17865C0000BE100A /* Build configuration list for PBXNativeTarget "OpenCV_Demo14" */;
+			buildConfigurationList = 2B26093B17865C0000BE100A /* Build configuration list for PBXNativeTarget "OpenCVDemos" */;
 			buildPhases = (
 				2B26091117865C0000BE100A /* Sources */,
 				2B26091217865C0000BE100A /* Frameworks */,
@@ -154,9 +218,9 @@
 			);
 			dependencies = (
 			);
-			name = OpenCV_Demo14;
-			productName = OpenCV_Demo14;
-			productReference = 2B26091517865C0000BE100A /* OpenCV_Demo14.app */;
+			name = OpenCVDemos;
+			productName = OpenCVDemos;
+			productReference = 2B26091517865C0000BE100A /* OpenCVDemos.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +232,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Rz.inc;
 			};
-			buildConfigurationList = 2B26091017865C0000BE100A /* Build configuration list for PBXProject "OpenCV_Demo14" */;
+			buildConfigurationList = 2B26091017865C0000BE100A /* Build configuration list for PBXProject "OpenCVDemos" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -180,7 +244,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B26091417865C0000BE100A /* OpenCV_Demo14 */,
+				2B26091417865C0000BE100A /* OpenCVDemos */,
 			);
 		};
 /* End PBXProject section */
@@ -190,13 +254,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225566A31799670F0015F7B9 /* Default-568h@2x.png in Resources */,
+				225566A2179967050015F7B9 /* Default@2x.png in Resources */,
+				225566A1179966F20015F7B9 /* Default.png in Resources */,
 				2B26092317865C0000BE100A /* InfoPlist.strings in Resources */,
-				2B26092B17865C0000BE100A /* Default.png in Resources */,
-				2B26092D17865C0000BE100A /* Default@2x.png in Resources */,
-				2B26092F17865C0000BE100A /* Default-568h@2x.png in Resources */,
 				2B26093217865C0000BE100A /* MainStoryboard.storyboard in Resources */,
-				2B45A575178BDD7200662FDA /* haarcascade_eye.xml in Resources */,
-				2B45A577178BDD7E00662FDA /* haarcascade_frontalface_alt.xml in Resources */,
+				2255669C17994A040015F7B9 /* haarcascade_eye.xml in Resources */,
+				2255669D17994A040015F7B9 /* haarcascade_frontalface_alt.xml in Resources */,
+				225566A617996B950015F7B9 /* converters.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,10 +273,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B26092517865C0000BE100A /* main.m in Sources */,
-				2B26092917865C0000BE100A /* AppDelegate.m in Sources */,
+				2B26092917865C0000BE100A /* AppDelegate.mm in Sources */,
 				2B26093517865C0000BE100A /* MasterViewController.mm in Sources */,
 				2B26093817865C0000BE100A /* DetailViewController.mm in Sources */,
 				2B26094A1786602800BE100A /* Utils.mm in Sources */,
+				22933DB21798DA44001EB809 /* Converter.mm in Sources */,
+				22933DBB1798DC66001EB809 /* NegaPosi.mm in Sources */,
+				225566A017994FE20015F7B9 /* FaceDetection.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,9 +369,10 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OpenCV_Demo14/OpenCV_Demo14-Prefix.pch";
-				INFOPLIST_FILE = "OpenCV_Demo14/OpenCV_Demo14-Info.plist";
-				PRODUCT_NAME = OpenCV_Demo14;
+				GCC_PREFIX_HEADER = "OpenCVDemos/OpenCVDemos-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SDK_ROOT}/usr/include/libxml2\"";
+				INFOPLIST_FILE = "OpenCVDemos/OpenCVDemos-Info.plist";
+				PRODUCT_NAME = OpenCVDemos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -316,9 +385,9 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "OpenCV_Demo14/OpenCV_Demo14-Prefix.pch";
-				INFOPLIST_FILE = "OpenCV_Demo14/OpenCV_Demo14-Info.plist";
-				PRODUCT_NAME = OpenCV_Demo14;
+				GCC_PREFIX_HEADER = "OpenCVDemos/OpenCVDemos-Prefix.pch";
+				INFOPLIST_FILE = "OpenCVDemos/OpenCVDemos-Info.plist";
+				PRODUCT_NAME = OpenCVDemos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -326,7 +395,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B26091017865C0000BE100A /* Build configuration list for PBXProject "OpenCV_Demo14" */ = {
+		2B26091017865C0000BE100A /* Build configuration list for PBXProject "OpenCVDemos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B26093917865C0000BE100A /* Debug */,
@@ -335,7 +404,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B26093B17865C0000BE100A /* Build configuration list for PBXNativeTarget "OpenCV_Demo14" */ = {
+		2B26093B17865C0000BE100A /* Build configuration list for PBXNativeTarget "OpenCVDemos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B26093C17865C0000BE100A /* Debug */,

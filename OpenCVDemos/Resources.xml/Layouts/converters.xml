@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<Layout>
+    <Converters section="Monochrome">
+    
+        <Converter>
+            <class>NegaPosi</class>
+            <title>ネガポジ反転</title>
+            <subtitle>グレイスケールに変換後、白黒反転します</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>-</class>
+            <title>-</title>
+            <subtitle>-</subtitle>
+        </Converter>
+
+    </Converters>
+    
+    <Converters section="Full Color">
+    
+        <Converter>
+            <class>Converter</class>
+            <title>変換なし</title>
+            <subtitle>-</subtitle>
+        </Converter>
+
+        <Converter>
+            <class>FaceDetection</class>
+            <title>顔検出</title>
+            <subtitle>顔を目を検出し、円で囲みます</subtitle>
+        </Converter>
+
+    </Converters>
+</Layout>

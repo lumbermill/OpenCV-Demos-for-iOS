@@ -6,6 +6,7 @@
 //
 
 #import "Utils.h"
+#import <mach/mach.h>
 
 @implementation Utils
 
@@ -82,6 +83,40 @@
     CGImageRelease(imageRef);
     
     return finalImage;
+}
+
+// メモリの使用量
++ (unsigned int)getMemoryUsage {
+    struct task_basic_info basicInfo;
+    mach_msg_type_number_t basicInfoCount = TASK_BASIC_INFO_COUNT;
+    
+    if (task_info(current_task(), TASK_BASIC_INFO, (task_info_t)&basicInfo, &basicInfoCount) != KERN_SUCCESS) {
+        NSLog(@"[SystemMonitor] %s", strerror(errno));
+        return -1;
+    }
+    NSLog(@"MemoryUsed: %d",basicInfo.resident_size);
+    return basicInfo.resident_size;
+}
+
+// メモリの空き容量
++ (unsigned int)getFreeMemory {
+    mach_port_t hostPort;
+    mach_msg_type_number_t hostSize;
+    vm_size_t pagesize;
+    
+    hostPort = mach_host_self();
+    hostSize = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    host_page_size(hostPort, &pagesize);
+    vm_statistics_data_t vmStat;
+    
+    if (host_statistics(hostPort, HOST_VM_INFO, (host_info_t)&vmStat, &hostSize) != KERN_SUCCESS) {
+        NSLog(@"[SystemMonitor] Failed to fetch vm statistics");
+        return -1;
+    }
+    
+    natural_t freeMemory = vmStat.free_count * pagesize;
+    
+    return (unsigned int)freeMemory;
 }
 
 @end

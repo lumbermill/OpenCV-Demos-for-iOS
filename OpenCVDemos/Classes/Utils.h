@@ -15,4 +15,7 @@
 + (cv::Mat)CVMatFromUIImage:(UIImage *)image;
 + (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat;
 
++ (unsigned int)getMemoryUsage;
++ (unsigned int)getFreeMemory;
+
 @end

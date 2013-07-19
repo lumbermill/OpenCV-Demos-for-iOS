@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterViewController : UITableViewController
+#define kIndex @"SheetIndexKey"
 
-@property (nonatomic, assign) NSInteger cellIndex;
-- (id)init;
+@interface MasterViewController : UITableViewController <UIActionSheetDelegate>
 
 @end
