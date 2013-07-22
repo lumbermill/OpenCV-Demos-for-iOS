@@ -12,7 +12,7 @@
 
 - (cv::Mat)convert:(cv::Mat) src_img{
     
-    NSLog(@"Convert");
+//    NSLog(@"Convert");
     return src_img;
 }
 

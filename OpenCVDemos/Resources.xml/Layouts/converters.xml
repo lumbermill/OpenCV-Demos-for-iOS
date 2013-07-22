@@ -3,18 +3,55 @@
     <Converters section="Monochrome">
     
         <Converter>
-            <class>NegaPosi</class>
-            <title>ネガポジ反転</title>
-            <subtitle>グレイスケールに変換後、白黒反転します</subtitle>
+            <class>GrayScale</class>
+            <title>Gray Scale</title>
+            <subtitle>グレイスケールに変換します</subtitle>
         </Converter>
         
         <Converter>
-            <class>-</class>
-            <title>-</title>
-            <subtitle>-</subtitle>
+            <class>Binary</class>
+            <title>２値化　Binary</title>
+            <subtitle>閾値以下の値は0に、それ以外を1にします</subtitle>
         </Converter>
 
+        <Converter>
+            <class>Trunk</class>
+            <title>２値化　Trunk</title>
+            <subtitle>閾値より大きい値は閾値まで切り詰め、それ以外はそのまま残します</subtitle>
+        </Converter>
+
+        <Converter>
+            <class>ToZero</class>
+            <title>２値化　ToZero</title>
+            <subtitle>閾値より大きい値をそのまま残し、それ以外を0にします</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>Adaptive</class>
+            <title>２値化　Adaptive</title>
+            <subtitle>入力によって閾値が適応的（能動的）に決まります</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>Sobel</class>
+            <title>輪郭検出　Sobel</title>
+            <subtitle>Sobelオペレータを用いて、1次の微分画像を求めます</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>Laplacian</class>
+            <title>輪郭検出　Laplacian</title>
+            <subtitle>2次微分画像のラプラシアンを求めます</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>Canny</class>
+            <title>輪郭検出　Canny</title>
+            <subtitle>Cannyアルゴリズムを用いて、画像のエッジを検出します</subtitle>
+        </Converter>
+        
     </Converters>
+
     
     <Converters section="Full Color">
     
@@ -25,9 +62,69 @@
         </Converter>
 
         <Converter>
+            <class>GaussianBlur</class>
+            <title>平滑化　GaussianBlur</title>
+            <subtitle>ガウシアンフィルタを用いてぼかします</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>MedianBlur</class>
+            <title>平滑化　MedianBlur</title>
+            <subtitle>メディアンフィルタを用いてぼかします</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>BilateralFilter</class>
+            <title>平滑化　BilateralFilter [エラー]</title>
+            <subtitle>バイラテラルフィルタを用いてぼかします</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>BoxFilter</class>
+            <title>平滑化　BoxFilter</title>
+            <subtitle>ボックスフィルタを用いてぼかします</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>Blur</class>
+            <title>平滑化　Blur</title>
+            <subtitle>正規化されたボックスフィルタを用いてぼかします</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>K-means</class>
+            <title>減色化　K-means [エラー]</title>
+            <subtitle>K-meansによってピクセル値のクラスタリングを行います</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>EllipticalFitting</class>
+            <title>楕円フィッティング</title>
+            <subtitle>画像から輪郭を検出し、楕円フィッティングを行います</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>Houghlines</class>
+            <title>直線検出 古典的Hough</title>
+            <subtitle>標準ハフ変換を用いて、2値画像から直線を検出します</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>HoughlinesP</class>
+            <title>直線検出 確率的Hough</title>
+            <subtitle>確率的ハフ変換を用いて、2値画像から線分を検出します</subtitle>
+        </Converter>
+        
+        <Converter>
+            <class>ORB</class>
+            <title>特徴点検出 ORB</title>
+            <subtitle>ORB検出器を用いて、特徴点を検出します</subtitle>
+        </Converter>
+        
+        <Converter>
             <class>FaceDetection</class>
             <title>顔検出</title>
-            <subtitle>顔を目を検出し、円で囲みます</subtitle>
+            <subtitle>顔と目を検出し、円で囲みます</subtitle>
         </Converter>
 
     </Converters>

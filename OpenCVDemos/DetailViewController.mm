@@ -17,7 +17,10 @@
 
 // ユーザーデフォルト（画像のソース選択結果）の呼び出し
 //0:Library, 1:Camera ,2:Photo Album
-@synthesize img_source; 
+@synthesize img_source;
+
+// ネガポジ反転スイッチ
+@synthesize invertSW;
 
 //共通変数の定義
 @synthesize effBufImage;
@@ -29,6 +32,9 @@
 
 //MasterViewControllerで選択された変換処理クラス
 @synthesize converter;
+
+// グレイスケール変換インスタンス作成
+id negapoji = [[NegaPosi alloc] init];
 
 //FPS測定用変数
 int countFPS;
@@ -46,18 +52,29 @@ NSTimer *timer = [[NSTimer alloc]init];
     [self makeMonitorLabel];
     [self makeImgPickBtn];
     
+    // ネガポジ反転スイッチ初期化
+    invertSW = NO;
+    //[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setOnTintColor:[UIColor grayColor]];
+    
+    // スライダーの初期値を通知
+    converter.gain = _levelSlider.value;
+    infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f",_levelSlider.value];
+    infoLabel02.text = [converter getGainFormat];
+
     // スライダーが変更されたとき
     [_levelSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
+// MasterViewへ戻るときのイベント
 - (void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"Back to Master");
+//    NSLog(@"Back to Master");
     [session stopRunning];
     [timer invalidate];
     
     [super viewDidDisappear:animated];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -88,8 +105,7 @@ NSTimer *timer = [[NSTimer alloc]init];
             
             [session startRunning];
             
-            [self startTimer];
-            
+            [self startTimer];            
         }
         else {
             // エラー処理
@@ -97,8 +113,7 @@ NSTimer *timer = [[NSTimer alloc]init];
         }
         
     }
-
-    NSLog(@"viewDidAppear");
+//    NSLog(@"viewDidAppear");
     [super viewDidAppear:animated];
 }
 
@@ -173,7 +188,7 @@ NSTimer *timer = [[NSTimer alloc]init];
     }];
 }
 
-//
+// OpenCV関数を使って画像を変換します
 - (UIImage*) processWithOpenCV: (UIImage*) cgImage
 {
     
@@ -183,7 +198,11 @@ NSTimer *timer = [[NSTimer alloc]init];
     //変換処理
     src_img = [converter convert:src_img];
     
-    //
+    // ネガポジ反転有効時
+    if (invertSW) {
+        src_img = [negapoji convert:src_img];
+    }
+        
     //CGImageRef effectedCgImage = [Utils CGImageFromCVMat:src_img];
     UIImage *effectedImage = [Utils UIImageFromCVMat:src_img];
     
@@ -256,8 +275,23 @@ NSTimer *timer = [[NSTimer alloc]init];
     }
 }
 
+// Invertボタンでネガポジ反転
+- (IBAction)invertBtn:(id)sender
+{
+    // ネガポジ反転スイッチ切り替え
+    if (invertSW)
+    {
+        invertSW = NO;
+    }
+    else
+    {
+        invertSW = YES;
+    }
+}
+
 
 #pragma mark - Timer
+
 // インフォメーションラベル更新
 - (void)refreshInfoLabel
 {

@@ -198,7 +198,9 @@
         
         DetailViewController *DetailViewController = segue.destinationViewController;
         DetailViewController.converter  = converter;
-        DetailViewController.img_source = indexPath.row;
+        // ユーザーデフォルト（画像のソース選択結果）の呼び出し
+        NSUserDefaults *userDefaults= [NSUserDefaults standardUserDefaults];
+        DetailViewController.img_source = [userDefaults integerForKey:@"kIndex"];
     }
 }
 

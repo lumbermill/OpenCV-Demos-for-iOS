@@ -2,7 +2,7 @@
 //  NegaPosi.m
 //  OpenCVDemos
 //
-//  Created by 中村 将 on 2013/07/19.
+//  Created by 國武　正督 on 2013/07/19.
 //  Copyright (c) 2013年 Rz.inc. All rights reserved.
 //
 
@@ -10,11 +10,9 @@
 
 @implementation NegaPosi
 
-// ネガポジ反転
 - (cv::Mat)convert:(cv::Mat) src_img{
     
-    // グレースケールに変換
-    cv::cvtColor(src_img, src_img, CV_RGB2GRAY);
+    // ネガポジ反転
     
     // 中間画像作成
     cv::Mat work_img = src_img;

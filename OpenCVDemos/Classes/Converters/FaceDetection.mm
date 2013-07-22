@@ -2,7 +2,7 @@
 //  FaceDetection.m
 //  OpenCVDemos
 //
-//  Created by 中村 将 on 2013/07/19.
+//  Created by 國武　正督 on 2013/07/19.
 //  Copyright (c) 2013年 Rz.inc. All rights reserved.
 //
 
@@ -30,9 +30,10 @@ cv::CascadeClassifier* cascade2;
     return self;
 }
 
-// 顔検出
 - (cv::Mat)convert:(cv::Mat) src_img{
     
+    // 顔検出
+
     // グレースケールに変換
     double scale = 2.0;
     cv::Mat work_img, smallImg(cv::saturate_cast<int>(src_img.rows/scale),

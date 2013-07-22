@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <opencv2/opencv.hpp>
 #import "Converter.h"
+#import "NegaPosi.h"
 
 
 @interface DetailViewController : UIViewController
@@ -36,6 +37,9 @@
 @property (nonatomic) UILabel *infoLabel02;
 @property (nonatomic) UILabel *infoLabel03;
 @property (nonatomic) UILabel *infoLabel04;
+@property (nonatomic) bool invertSW;
+
+- (IBAction)invertBtn:(id)sender;
 
 - (IBAction)reloadBtn:(id)sender;
 - (IBAction)backButtonEvent:(id)sender;
