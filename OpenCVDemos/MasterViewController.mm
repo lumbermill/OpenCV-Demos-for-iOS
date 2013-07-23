@@ -159,6 +159,8 @@
     
     cell.textLabel.text       = [_dic objectForKey:@"title"];
     cell.detailTextLabel.text = [_dic objectForKey:@"subtitle"];
+    // サブタイトルを複数行表示できるようにする
+    cell.detailTextLabel.numberOfLines = 2;
     
     return cell;
 }
