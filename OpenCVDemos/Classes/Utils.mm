@@ -17,7 +17,7 @@
     CGFloat cols = CGImageGetWidth(image);
     CGFloat rows = CGImageGetHeight(image);
     
-    cv::Mat cvMat(rows, cols, CV_8UC4); // 8 bits per component, 1 channels
+    cv::Mat cvMat(rows, cols, CV_8UC4); // 8 bits per component, 4 channels
     
     CGContextRef contextRef = CGBitmapContextCreate(cvMat.data,                 // Pointer to data
                                                     cols,                       // Width of bitmap
@@ -61,7 +61,6 @@
                                         false,                                      //should interpolate
                                         kCGRenderingIntentDefault                   //intent
                                         );
-    // ここでリリースして良いのか？
     CGDataProviderRelease(provider);
     CGColorSpaceRelease(colorSpace);
 

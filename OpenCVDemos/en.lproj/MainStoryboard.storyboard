@@ -62,7 +62,7 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="36"/>
+                    <navigationItem key="navigationItem" title="OpenCV functions" id="36"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
@@ -110,10 +110,11 @@
                             <constraint firstItem="cjg-nP-H0X" firstAttribute="top" secondItem="22" secondAttribute="top" type="default" id="odT-dP-2I4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="26"/>
+                    <navigationItem key="navigationItem" title="Image viewer" id="26"/>
                     <connections>
                         <outlet property="imageView" destination="cjg-nP-H0X" id="GOL-bt-Kq5"/>
                         <outlet property="levelSlider" destination="9r9-uc-YsN" id="knv-np-Z2L"/>
+                        <outlet property="reloadBtn" destination="m0P-r9-tCN" id="Y6j-W8-498"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>

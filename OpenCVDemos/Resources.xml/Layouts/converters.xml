@@ -35,7 +35,7 @@
         <Converter>
             <class>Sobel</class>
             <title>輪郭検出　Sobel</title>
-            <subtitle>Sobelオペレータを用いて、1次の微分画像を求めます</subtitle>
+            <subtitle>Sobelオペレータを用いて1次の微分画像を求めます</subtitle>
         </Converter>
         
         <Converter>
@@ -47,7 +47,7 @@
         <Converter>
             <class>Canny</class>
             <title>輪郭検出　Canny</title>
-            <subtitle>Cannyアルゴリズムを用いて、画像のエッジを検出します</subtitle>
+            <subtitle>Cannyアルゴリズムを用いて画像のエッジを検出します</subtitle>
         </Converter>
         
     </Converters>
@@ -72,13 +72,13 @@
             <title>平滑化　MedianBlur</title>
             <subtitle>メディアンフィルタを用いてぼかします</subtitle>
         </Converter>
-        
+<!--        
         <Converter>
             <class>BilateralFilter</class>
             <title>平滑化　BilateralFilter [エラー]</title>
             <subtitle>バイラテラルフィルタを用いてぼかします</subtitle>
         </Converter>
-        
+-->        
         <Converter>
             <class>BoxFilter</class>
             <title>平滑化　BoxFilter</title>
@@ -90,13 +90,13 @@
             <title>平滑化　Blur</title>
             <subtitle>正規化されたボックスフィルタを用いてぼかします</subtitle>
         </Converter>
-        
+<!--
         <Converter>
             <class>K-means</class>
             <title>減色化　K-means [エラー]</title>
             <subtitle>K-meansによってピクセル値のクラスタリングを行います</subtitle>
         </Converter>
-        
+-->        
         <Converter>
             <class>EllipticalFitting</class>
             <title>楕円フィッティング</title>
@@ -106,19 +106,19 @@
         <Converter>
             <class>Houghlines</class>
             <title>直線検出 古典的Hough</title>
-            <subtitle>標準ハフ変換を用いて、2値画像から直線を検出します</subtitle>
+            <subtitle>標準ハフ変換を用いて2値画像から直線を検出します</subtitle>
         </Converter>
         
         <Converter>
             <class>HoughlinesP</class>
             <title>直線検出 確率的Hough</title>
-            <subtitle>確率的ハフ変換を用いて、2値画像から線分を検出します</subtitle>
+            <subtitle>確率的ハフ変換を用いて2値画像から線分を検出します</subtitle>
         </Converter>
         
         <Converter>
             <class>ORB</class>
             <title>特徴点検出 ORB</title>
-            <subtitle>ORB検出器を用いて、特徴点を検出します</subtitle>
+            <subtitle>ORB検出器を用いて特徴点を検出します</subtitle>
         </Converter>
         
         <Converter>
@@ -126,6 +126,12 @@
             <title>顔検出</title>
             <subtitle>顔と目を検出し、円で囲みます</subtitle>
         </Converter>
-
+<!--
+        <Converter>
+            <class>HumanDetection</class>
+            <title>人検出 [エラー]</title>
+            <subtitle>立っている人を検出します</subtitle>
+        </Converter>
+ -->
     </Converters>
 </Layout>

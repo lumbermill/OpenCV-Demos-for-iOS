@@ -16,8 +16,7 @@
 @interface DetailViewController : UIViewController
 <AVCaptureVideoDataOutputSampleBufferDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 {
-    UIPopoverController *popover;
-    
+    UIPopoverController *popover;    
 }
 
 @property Converter *converter;
@@ -25,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *levelSlider;
 
-@property (strong, nonatomic) NSIndexPath *detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+//@property (strong, nonatomic) NSIndexPath *detailItem;
+//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @property (nonatomic) UIImage *effBufImage;
 @property (nonatomic) UIImagePickerControllerSourceType sourceType;
@@ -36,11 +35,13 @@
 @property (nonatomic) UILabel *infoLabel01;
 @property (nonatomic) UILabel *infoLabel02;
 @property (nonatomic) UILabel *infoLabel03;
-@property (nonatomic) UILabel *infoLabel04;
+//@property (nonatomic) UILabel *infoLabel04;
 @property (nonatomic) bool invertSW;
 
 - (IBAction)invertBtn:(id)sender;
 
 - (IBAction)reloadBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *reloadBtn;
+
 - (IBAction)backButtonEvent:(id)sender;
 @end

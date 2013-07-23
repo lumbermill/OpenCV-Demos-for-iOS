@@ -17,6 +17,8 @@
 		225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 225566AB1799749C0015F7B9 /* libxml2.dylib */; };
 		22933DB21798DA44001EB809 /* Converter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22933DB11798DA44001EB809 /* Converter.mm */; };
 		22933DBB1798DC66001EB809 /* NegaPosi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22933DBA1798DC66001EB809 /* NegaPosi.mm */; };
+		2B1C95FA179E0ABE006700FD /* HumanDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C95F9179E0ABE006700FD /* HumanDetection.mm */; };
+		2B1C95FC179E282D006700FD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B1C95FB179E282C006700FD /* AudioToolbox.framework */; };
 		2B26091917865C0000BE100A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26091817865C0000BE100A /* UIKit.framework */; };
 		2B26091B17865C0000BE100A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26091A17865C0000BE100A /* Foundation.framework */; };
 		2B26091D17865C0000BE100A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26091C17865C0000BE100A /* CoreGraphics.framework */; };
@@ -62,6 +64,9 @@
 		22933DB11798DA44001EB809 /* Converter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Converter.mm; sourceTree = "<group>"; };
 		22933DB91798DC66001EB809 /* NegaPosi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegaPosi.h; sourceTree = "<group>"; };
 		22933DBA1798DC66001EB809 /* NegaPosi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NegaPosi.mm; sourceTree = "<group>"; };
+		2B1C95F8179E0ABD006700FD /* HumanDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HumanDetection.h; sourceTree = "<group>"; };
+		2B1C95F9179E0ABE006700FD /* HumanDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HumanDetection.mm; sourceTree = "<group>"; };
+		2B1C95FB179E282C006700FD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2B26091517865C0000BE100A /* OpenCVDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B26091817865C0000BE100A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B26091A17865C0000BE100A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -129,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1C95FC179E282D006700FD /* AudioToolbox.framework in Frameworks */,
 				225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */,
 				2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */,
 				2B26094317865F3B00BE100A /* CoreVideo.framework in Frameworks */,
@@ -207,6 +213,8 @@
 				2BAE82CA179D233F00E466FE /* ORB.mm */,
 				2255669E17994FE20015F7B9 /* FaceDetection.h */,
 				2255669F17994FE20015F7B9 /* FaceDetection.mm */,
+				2B1C95F8179E0ABD006700FD /* HumanDetection.h */,
+				2B1C95F9179E0ABE006700FD /* HumanDetection.mm */,
 			);
 			path = Converters;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 		2B26091717865C0000BE100A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B1C95FB179E282C006700FD /* AudioToolbox.framework */,
 				2B45A57E178BE6D500662FDA /* opencv2.framework */,
 				2B26094217865F3B00BE100A /* CoreVideo.framework */,
 				2B26094017865F0100BE100A /* CoreMedia.framework */,
@@ -388,6 +397,7 @@
 				2BAE82C5179D14A200E466FE /* Houghlines.mm in Sources */,
 				2BAE82C8179D14BA00E466FE /* HoughlinesP.mm in Sources */,
 				2BAE82CB179D234200E466FE /* ORB.mm in Sources */,
+				2B1C95FA179E0ABE006700FD /* HumanDetection.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

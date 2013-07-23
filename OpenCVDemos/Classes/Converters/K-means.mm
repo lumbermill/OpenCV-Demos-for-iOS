@@ -17,7 +17,6 @@
     // 中間画像作成
     cv::Mat work_img = src_img;
 
-/*
     // 画像を1列の行列に変形
     cv::Mat points;
     work_img.convertTo(points, CV_32FC3);
@@ -44,8 +43,7 @@
         (*itd)[2] = cv::saturate_cast<uchar>(color[2]);
     }
     work_img = dst_img;
-*/
-    
+
     return work_img;
 }
 

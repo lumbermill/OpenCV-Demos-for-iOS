@@ -6,7 +6,6 @@
 //  Copyright (c) 2013年 Rz.inc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Converter.h"
 
 @interface Blur : Converter

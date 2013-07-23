@@ -28,12 +28,12 @@
 @synthesize infoLabel01;
 @synthesize infoLabel02;
 @synthesize infoLabel03;
-@synthesize infoLabel04;
+//@synthesize infoLabel04;
 
 //MasterViewControllerで選択された変換処理クラス
 @synthesize converter;
 
-// グレイスケール変換インスタンス作成
+// ネガポジ反転インスタンス作成
 id negapoji = [[NegaPosi alloc] init];
 
 //FPS測定用変数
@@ -48,13 +48,20 @@ NSTimer *timer = [[NSTimer alloc]init];
 {
     [super viewDidLoad];
     
-    // 
+    // インフォメーションモニタラベル実装
     [self makeMonitorLabel];
-    [self makeImgPickBtn];
+    
+    if (img_source == 1) {
+        // リアルタイム変換時はReloadボタンで静止画をアルバムに保存する
+        self.reloadBtn.title = @"Shot";
+    }
+    else {
+        // ImgPickBtnは静止画変換時のみ実装
+        [self makeImgPickBtn];
+    }
     
     // ネガポジ反転スイッチ初期化
     invertSW = NO;
-    //[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setOnTintColor:[UIColor grayColor]];
     
     // スライダーの初期値を通知
     converter.gain = _levelSlider.value;
@@ -177,10 +184,10 @@ NSTimer *timer = [[NSTimer alloc]init];
         // 画像の加工
         UIImage *effectImage = [self processWithOpenCV: effBufImage];
         
-        //加工した画像の表示
+        // 加工した画像の表示
         self.imageView.image = effectImage;
         
-        //静止画をアルバムに保存
+        // 静止画をアルバムに保存
         //UIImageWriteToSavedPhotosAlbum(effectImage, nil, nil, nil);
         
         // インフォメーションラベル更新
@@ -195,7 +202,7 @@ NSTimer *timer = [[NSTimer alloc]init];
     // 元となる画像の定義
     cv::Mat src_img = [Utils CVMatFromUIImage:cgImage];
     
-    //変換処理
+    // 変換処理
     src_img = [converter convert:src_img];
     
     // ネガポジ反転有効時
@@ -273,6 +280,11 @@ NSTimer *timer = [[NSTimer alloc]init];
         // インフォメーションラベル更新
         [self refreshInfoLabel];
     }
+    else {
+        // リアルタイム変換時は静止画をアルバムに保存
+        AudioServicesPlaySystemSound(1108);
+        UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil, nil);
+    }
 }
 
 // Invertボタンでネガポジ反転
@@ -299,14 +311,6 @@ NSTimer *timer = [[NSTimer alloc]init];
 }
 
 
-//FPS測定(結果画像が1sに何回表示されたか測定)
-- (void)doTimer:(NSTimer *)timer
-{
-    NSLog(@"%d fps",countFPS);
-    fpsLabel.text = [NSString stringWithFormat:@"%d fps", countFPS];
-    countFPS = 0;
-}
-
 // FPS測定開始(タイマー開始）
 - (void)startTimer
 {
@@ -318,6 +322,17 @@ NSTimer *timer = [[NSTimer alloc]init];
                                            userInfo:nil
                                             repeats:YES
              ];
+}
+
+//FPS測定(結果画像が1sに何回表示されたか測定)
+- (void)doTimer:(NSTimer *)timer
+{
+    NSLog(@"%d fps",countFPS);
+    fpsLabel.text = [NSString stringWithFormat:@"%d fps", countFPS];
+    countFPS = 0;
+    
+    // インフォメーションラベル更新
+    [self refreshInfoLabel];
 }
 
 
