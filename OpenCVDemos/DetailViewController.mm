@@ -8,7 +8,6 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-#import <AVFoundation/AVFoundation.h>
 #import "Utils.h"
 
 @implementation DetailViewController {
@@ -86,6 +85,9 @@ AVCaptureDeviceInput *videoInput;
     [session stopRunning];
     [timer invalidate];
     
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    //[[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    
     [super viewDidDisappear:animated];
 }
 
@@ -113,7 +115,18 @@ AVCaptureDeviceInput *videoInput;
         session = [[AVCaptureSession alloc] init];
         session.sessionPreset = AVCaptureSessionPreset640x480;
         [session commitConfiguration];
-        
+ 
+/*
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onOrientationChanged:)
+                                                     name:UIDeviceOrientationDidChangeNotification
+                                                   object:nil];
+*/
+        // ビデオ入力のAVCaptureConnectionを取得
+        AVCaptureConnection *captConnection = [cvdo connectionWithMediaType:AVMediaTypeVideo];
+        captConnection.videoOrientation = [self videoOrientationFromDeviceOrientation:[UIDevice currentDevice].orientation];
+
         
         // ビデオのキャプチャを開始
         if ([session canAddInput:videoInput]) {
@@ -180,6 +193,7 @@ AVCaptureDeviceInput *videoInput;
     
     // 画像の表示
     self.imageView.image = effectImage;
+    //self.imageView.image = image;
     
     //FPS測定
     countFPS++;
@@ -210,6 +224,9 @@ AVCaptureDeviceInput *videoInput;
 - (UIImage*) processWithOpenCV: (UIImage*) cgImage
 {
     
+    // 正位置に回転
+//    UIImage *img = [UIImage imageWithCGImage:cgImage.CGImage scale:1.0f orientation:UIImageOrientationRight];
+    
     // 元となる画像の定義
     cv::Mat src_img = [Utils CVMatFromUIImage:cgImage];
     
@@ -225,13 +242,13 @@ AVCaptureDeviceInput *videoInput;
     UIImage *effectedImage = [Utils UIImageFromCVMat:src_img];
     
     // 何故か回転してしまうので、元に戻しています
-    return [UIImage imageWithCGImage:effectedImage.CGImage scale:1.0f
-                         orientation:UIImageOrientationRight];
+    return [UIImage imageWithCGImage:effectedImage.CGImage scale:1.0f orientation:UIImageOrientationRight];
+    //return effectedImage;
 }
 
 
 // 本体の向きを取得
-+ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
+- (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
 {
     AVCaptureVideoOrientation orientation;
     switch (deviceOrientation) {

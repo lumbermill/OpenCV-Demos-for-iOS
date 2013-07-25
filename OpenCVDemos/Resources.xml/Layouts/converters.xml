@@ -68,6 +68,10 @@
         </Converter>
 -->        
         <Converter>
+            <class>CircleDetection</class>
+        </Converter>
+
+        <Converter>
             <class>EllipticalFitting</class>
         </Converter>
         

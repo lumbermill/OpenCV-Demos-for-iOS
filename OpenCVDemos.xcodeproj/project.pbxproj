@@ -31,6 +31,7 @@
 		2B26094317865F3B00BE100A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26094217865F3B00BE100A /* CoreVideo.framework */; };
 		2B26094A1786602800BE100A /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B2609491786602800BE100A /* Utils.mm */; };
 		2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B45A57E178BE6D500662FDA /* opencv2.framework */; };
+		2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */; };
 		2BAE8298179CCC9900E466FE /* Binary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE8297179CCC9900E466FE /* Binary.mm */; };
 		2BAE829B179CFB3100E466FE /* GrayScale.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE829A179CFB3100E466FE /* GrayScale.mm */; };
 		2BAE829E179D0A6D00E466FE /* Trunk.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE829D179D0A6D00E466FE /* Trunk.mm */; };
@@ -95,6 +96,8 @@
 		2B2609481786602800BE100A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		2B2609491786602800BE100A /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
 		2B45A57E178BE6D500662FDA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		2B4A21F917A0F5CC001567EF /* CircleDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetection.h; sourceTree = "<group>"; };
+		2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CircleDetection.mm; sourceTree = "<group>"; };
 		2BAE8296179CCC9800E466FE /* Binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binary.h; sourceTree = "<group>"; };
 		2BAE8297179CCC9900E466FE /* Binary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Binary.mm; sourceTree = "<group>"; };
 		2BAE8299179CFB3100E466FE /* GrayScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayScale.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				2BAE82BB179D137900E466FE /* Blur.mm */,
 				2BAE82BD179D13A300E466FE /* K-means.h */,
 				2BAE82BE179D13A400E466FE /* K-means.mm */,
+				2B4A21F917A0F5CC001567EF /* CircleDetection.h */,
+				2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */,
 				2BAE82C0179D146000E466FE /* EllipticalFitting.h */,
 				2BAE82C1179D146100E466FE /* EllipticalFitting.mm */,
 				2BAE82C3179D149F00E466FE /* Houghlines.h */,
@@ -415,6 +420,7 @@
 				2BAE82C8179D14BA00E466FE /* HoughlinesP.mm in Sources */,
 				2BAE82CB179D234200E466FE /* ORB.mm in Sources */,
 				2B1C95FA179E0ABE006700FD /* HumanDetection.mm in Sources */,
+				2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

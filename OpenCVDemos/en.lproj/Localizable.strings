@@ -63,6 +63,9 @@
 "K-means_title" = "減色化　K-means [エラー]";
 "K-means_subtitle" = "K-meansによってピクセル値のクラスタリングを行います";
 
+"CircleDetection_title" = "円検出";
+"CircleDetection_subtitle" = "円を検出します";
+
 "EllipticalFitting_title" = "楕円フィッティング";
 "EllipticalFitting_subtitle" = "画像から輪郭を検出し、楕円フィッティングを行います";
 
