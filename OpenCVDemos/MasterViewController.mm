@@ -51,11 +51,11 @@
     // アクションシートを作る
     UIActionSheet *actionSheet;
     actionSheet = [[UIActionSheet alloc]
-                   initWithTitle:@"Select Soruce Type"
+                   initWithTitle:NSLocalizedString(@"Select Soruce Type",@"Select Soruce Type")
                    delegate:self
-                   cancelButtonTitle:@"Cancel"
+                   cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel")
                    destructiveButtonTitle:nil
-                   otherButtonTitles:@"Photo Library", @"Camera", @"Saved Photos", nil];
+                   otherButtonTitles:NSLocalizedString(@"Photo Library",@"Photo Library"), NSLocalizedString(@"Camera",@"Camera"), NSLocalizedString(@"Saved Photos",@"Saved Photos"), nil];
     
     // アクションシートを表示する
     [actionSheet showInView:self.view];
@@ -76,8 +76,8 @@
     xmlChar *_xp_cvs= (xmlChar*)[@"//Converters"     cStringUsingEncoding:NSUTF8StringEncoding];
     xmlChar *_xp_cv = (xmlChar*)[@"/Converter"       cStringUsingEncoding:NSUTF8StringEncoding];
     xmlChar *_xp_cl = (xmlChar*)[@"/class/text()"    cStringUsingEncoding:NSUTF8StringEncoding];
-    xmlChar *_xp_tt = (xmlChar*)[@"/title/text()"    cStringUsingEncoding:NSUTF8StringEncoding];
-    xmlChar *_xp_st = (xmlChar*)[@"/subtitle/text()" cStringUsingEncoding:NSUTF8StringEncoding];
+    //xmlChar *_xp_tt = (xmlChar*)[@"/title/text()"    cStringUsingEncoding:NSUTF8StringEncoding];
+    //xmlChar *_xp_st = (xmlChar*)[@"/subtitle/text()" cStringUsingEncoding:NSUTF8StringEncoding];
     
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourceDirectoryPath = [bundle bundlePath];
@@ -107,13 +107,17 @@
             xmlXPathContextPtr context2 = xmlXPathNewContext((xmlDocPtr)node2);
             
             xmlNodeSetPtr result21 = xmlXPathEvalExpression(_xp_cl, context2)->nodesetval;
-            xmlNodeSetPtr result22 = xmlXPathEvalExpression(_xp_tt, context2)->nodesetval;
-            xmlNodeSetPtr result23 = xmlXPathEvalExpression(_xp_st, context2)->nodesetval;
+            //xmlNodeSetPtr result22 = xmlXPathEvalExpression(_xp_tt, context2)->nodesetval;
+            //xmlNodeSetPtr result23 = xmlXPathEvalExpression(_xp_st, context2)->nodesetval;
             
             NSMutableDictionary *_dic =  [NSMutableDictionary dictionary];
+            NSString *classname = [NSString stringWithUTF8String:(char *)result21->nodeTab[0]->content];
+            
             [_dic setObject:[NSString stringWithUTF8String:(char *)result21->nodeTab[0]->content] forKey:@"class"];
-            [_dic setObject:[NSString stringWithUTF8String:(char *)result22->nodeTab[0]->content] forKey:@"title"];
-            [_dic setObject:[NSString stringWithUTF8String:(char *)result23->nodeTab[0]->content] forKey:@"subtitle"];
+            // タイトル国際化対応
+            [_dic setObject:NSLocalizedString([classname stringByAppendingString:@"_title"],@"title") forKey:@"title"];
+            // サブタイトル国際化対応
+            [_dic setObject:NSLocalizedString([classname stringByAppendingString:@"_subtitle"],@"subtitle") forKey:@"subtitle"];
             
             [_cvcell addObject:_dic];
             
@@ -121,7 +125,9 @@
         }
         
         [_converters addObject:_cvcell];
-        [_converter_sections addObject:[NSString stringWithUTF8String:(char *)attr]];
+        //[_converter_sections addObject:[NSString stringWithUTF8String:(char *)attr]];
+        [_converter_sections addObject:NSLocalizedString([@"Section_" stringByAppendingString:[NSString stringWithUTF8String:(char *)attr]],@"SectionTitle")];
+
         
         xmlXPathFreeContext(context3);
     }

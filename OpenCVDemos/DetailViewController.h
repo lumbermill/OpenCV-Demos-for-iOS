@@ -38,10 +38,18 @@
 //@property (nonatomic) UILabel *infoLabel04;
 @property (nonatomic) bool invertSW;
 
+@property (assign, nonatomic) BOOL usingFrontCamera;
+
 - (IBAction)invertBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *invertBtn;
 
 - (IBAction)reloadBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *reloadBtn;
 
 - (IBAction)backButtonEvent:(id)sender;
+
+
+// デバイスの向きからカメラAPIの向きを判別する
++ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation;
+
 @end

@@ -42,6 +42,10 @@ int countFPS;
 //FPS測定用タイマー
 NSTimer *timer = [[NSTimer alloc]init];
 
+// 現在のキャプチャ入力デバイス
+AVCaptureDevice *device;
+AVCaptureDeviceInput *videoInput;
+
 
 #pragma mark - Initialize
 - (void)viewDidLoad
@@ -53,7 +57,9 @@ NSTimer *timer = [[NSTimer alloc]init];
     
     if (img_source == 1) {
         // リアルタイム変換時はReloadボタンで静止画をアルバムに保存する
-        self.reloadBtn.title = @"Shot";
+        self.reloadBtn.title = NSLocalizedString(@"ReloadBtnTitle",@"ReloadBtnTitle");
+        // changeCameraBtnは静止画変換時のみ実装
+        [self makeChangeCameraBtn];
     }
     else {
         // ImgPickBtnは静止画変換時のみ実装
@@ -62,6 +68,7 @@ NSTimer *timer = [[NSTimer alloc]init];
     
     // ネガポジ反転スイッチ初期化
     invertSW = NO;
+    self.invertBtn.tintColor = [UIColor grayColor];
     
     // スライダーの初期値を通知
     converter.gain = _levelSlider.value;
@@ -89,8 +96,10 @@ NSTimer *timer = [[NSTimer alloc]init];
     if (img_source == 1) {
         
         // ビデオキャプチャの定義
-        AVCaptureDevice *d = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        AVCaptureDeviceInput *cdi = [AVCaptureDeviceInput deviceInputWithDevice:d error:NULL];
+//        AVCaptureDevice *d = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+//        AVCaptureDeviceInput *cdi = [AVCaptureDeviceInput deviceInputWithDevice:d error:NULL];
+        device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:NULL];
         NSMutableDictionary *settings = [NSMutableDictionary dictionary];
         [settings setObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
         
@@ -105,14 +114,16 @@ NSTimer *timer = [[NSTimer alloc]init];
         session.sessionPreset = AVCaptureSessionPreset640x480;
         [session commitConfiguration];
         
+        
         // ビデオのキャプチャを開始
-        if ([session canAddInput:cdi]) {
-            [session addInput:cdi];
+        if ([session canAddInput:videoInput]) {
+            [session addInput:videoInput];
             [session addOutput:cvdo];
             
             [session startRunning];
             
-            [self startTimer];            
+
+            [self startTimer];
         }
         else {
             // エラー処理
@@ -219,6 +230,37 @@ NSTimer *timer = [[NSTimer alloc]init];
 }
 
 
+// 本体の向きを取得
++ (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
+{
+    AVCaptureVideoOrientation orientation;
+    switch (deviceOrientation) {
+        case UIDeviceOrientationUnknown:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortrait:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            orientation = AVCaptureVideoOrientationPortraitUpsideDown;
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            orientation = AVCaptureVideoOrientationLandscapeRight;
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            orientation = AVCaptureVideoOrientationLandscapeLeft;
+            break;
+        case UIDeviceOrientationFaceUp:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+        case UIDeviceOrientationFaceDown:
+            orientation = AVCaptureVideoOrientationPortrait;
+            break;
+    }
+    return orientation;
+}
+
+
 #pragma mark - Button
 // 右上のボタン（写真選択）を押したとき
 - (void)photoButtonTouched
@@ -265,6 +307,44 @@ NSTimer *timer = [[NSTimer alloc]init];
     }
 }
 
+// 右上のボタン（カメラのフロント/バック切り替え）を押したとき
+- (void)changeCameraBtnTouched
+{
+    // フロントカメラを使っていたとき
+    if(self.usingFrontCamera)
+    {
+        // デフォルトのカメラを使用
+        device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        self.usingFrontCamera = NO;
+    }
+
+    // フロントカメラを使っていなかったとき
+    else {
+        // フロントカメラを検索
+        for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+            if ([d position] == AVCaptureDevicePositionFront) {
+                device = d;
+                self.usingFrontCamera = YES;
+                break;
+            }
+            else {
+                // フロントカメラがなければデフォルトのカメラを使用
+                device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+                self.usingFrontCamera = NO;
+            }
+        }        
+    }
+    // セッション切り替え
+    [session stopRunning];
+    [session beginConfiguration];
+    [session removeInput:videoInput];
+    videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
+    [session addInput:videoInput];
+    [session commitConfiguration];
+    [session startRunning];
+}
+
+
 // Reloadボタンで変換やり直し
 - (IBAction)reloadBtn:(id)sender
 {
@@ -294,10 +374,13 @@ NSTimer *timer = [[NSTimer alloc]init];
     if (invertSW)
     {
         invertSW = NO;
+        self.invertBtn.tintColor = [UIColor magentaColor];
+        // 色が変わらない..??
     }
     else
     {
         invertSW = YES;
+        self.invertBtn.tintColor = [UIColor grayColor];
     }
 }
 
@@ -307,7 +390,7 @@ NSTimer *timer = [[NSTimer alloc]init];
 // インフォメーションラベル更新
 - (void)refreshInfoLabel
 {
-    infoLabel03.text = [NSString stringWithFormat:@"Memory usage\n %d",[Utils getMemoryUsage]];
+    infoLabel03.text = [NSString stringWithFormat:@"Memory usage\n %@",[Utils convertByteToKB:[Utils getMemoryUsage]]];
 }
 
 
@@ -402,10 +485,11 @@ NSTimer *timer = [[NSTimer alloc]init];
     infoLabel02.font = infoLabel01.font;
     infoLabel02.backgroundColor = infoLabel01.backgroundColor;
     infoLabel02.numberOfLines = 0; // 0の場合は無制限
-    infoLabel03.text = [NSString stringWithFormat:@"Memory usage\n %d",[Utils getMemoryUsage]];
+    infoLabel03.text = [NSString stringWithFormat:@"Memory usage\n %@",[Utils convertByteToKB:[Utils getMemoryUsage]]];
     infoLabel03.textColor = infoLabel01.textColor;
     infoLabel03.shadowColor = infoLabel01.shadowColor;
     infoLabel03.shadowOffset = infoLabel01.shadowOffset;
+    infoLabel03.textAlignment = NSTextAlignmentRight;
     infoLabel03.font = infoLabel01.font;
     infoLabel03.backgroundColor = infoLabel01.backgroundColor;
     infoLabel03.numberOfLines = 0; // 0の場合は無制限
@@ -419,13 +503,25 @@ NSTimer *timer = [[NSTimer alloc]init];
 // システム標準画像を使ったボタン作成
 - (void)makeImgPickBtn
 {
-    
-    UIBarButtonItem *imgPickBtn = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemCompose  // スタイルを指定
-                                   target:self  // デリゲートのターゲットを指定
-                                   action:@selector(photoButtonTouched)  // ボタンが押されたときに呼ばれるメソッドを指定
-                                   ];
-    self.navigationItem.rightBarButtonItem = imgPickBtn;
+        // 静止画変換時は画像ファイル選択ボタンを実装する
+        UIBarButtonItem *imgPickBtn = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemCompose  // スタイル指定（使い方は不適切..)
+                                       target:self  // デリゲートのターゲットを指定
+                                       action:@selector(photoButtonTouched)  // ボタンが押されたときに呼ばれるメソッドを指定
+                                       ];
+        self.navigationItem.rightBarButtonItem = imgPickBtn;
+}
+
+// システム標準画像を使ったボタン作成
+- (void)makeChangeCameraBtn
+{
+    // リアルタイム変換時はフロント or バックカメラ切り替えボタンを実装する
+    UIBarButtonItem *changeCameraBtn = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemCamera  // スタイル指定（使い方は不適切..)
+                                        target:self  // デリゲートのターゲットを指定
+                                        action:@selector(changeCameraBtnTouched)  // ボタンが押されたときに呼ばれるメソッドを指定
+                                        ];
+    self.navigationItem.rightBarButtonItem = changeCameraBtn;
 }
 
 #pragma mark - Error

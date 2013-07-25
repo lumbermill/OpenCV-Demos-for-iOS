@@ -93,6 +93,7 @@
         NSLog(@"[SystemMonitor] %s", strerror(errno));
         return -1;
     }
+    
     NSLog(@"MemoryUsed: %d",basicInfo.resident_size);
     return basicInfo.resident_size;
 }
@@ -116,6 +117,23 @@
     natural_t freeMemory = vmStat.free_count * pagesize;
     
     return (unsigned int)freeMemory;
+}
+
+
++ (NSString*)convertByteToKB:(NSInteger)byte {
+    
+    // NSNumberに変換 (単位:KB)
+    NSNumber *number = [[NSNumber alloc] initWithInteger:byte / 1024];
+    // 数値を3桁ごとカンマ区切りにするように設定
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setGroupingSeparator:@","];
+    [formatter setGroupingSize:3];
+    
+    // 数値を3桁ごとカンマ区切り形式で文字列に変換する
+    NSString *result = [[formatter stringFromNumber:number] stringByAppendingString:@" KB"];
+    
+    return result;
 }
 
 @end

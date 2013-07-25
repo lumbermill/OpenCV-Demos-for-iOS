@@ -14,6 +14,7 @@
 + (CGImageRef)CGImageFromCVMat:(cv::Mat)cvMat;
 + (cv::Mat)CVMatFromUIImage:(UIImage *)image;
 + (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat;
++ (NSString*)convertByteToKB:(NSInteger)byte;
 
 + (unsigned int)getMemoryUsage;
 + (unsigned int)getFreeMemory;

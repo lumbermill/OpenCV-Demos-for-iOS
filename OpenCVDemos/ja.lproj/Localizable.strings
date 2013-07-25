@@ -1,0 +1,82 @@
+/* 
+  Localizable.strings
+  OpenCVDemos
+
+  Created by 國武　正督 on 2013/07/23.
+  Copyright (c) 2013年 Rz.inc. All rights reserved.
+*/
+
+"ReloadBtnTitle" = "撮影";
+
+"Section_Monochrome" = "白黒演算";
+"Section_Full Color" = "フルカラー演算";
+
+"Select Soruce Type" = "画像元を選択してください";
+"Photo Library" = "フォトライブラリ";
+"Camera" = "カメラ起動";
+"Saved Photos" = "カメラロール";
+"Cancel" = "キャンセル";
+
+"GrayScale_title" = "グレースケール";
+"GrayScale_subtitle" = "グレースケールに変換します";
+
+"Binary_title" = "２値化　Binary";
+"Binary_subtitle" = "閾値以下の値は0に、それ以外を1にします";
+
+"Trunk_title" = "２値化　Trunk";
+"Trunk_subtitle" = "閾値より大きい値は閾値まで切り詰め、それ以外はそのまま残します";
+
+"ToZero_title" = "２値化　ToZero";
+"ToZero_subtitle" = "閾値より大きい値をそのまま残し、それ以外を0にします";
+
+"Adaptive_title" = "２値化　Adaptive";
+"Adaptive_subtitle" = "入力によって閾値が適応的（能動的）に決まります";
+
+"Sobel_title" = "輪郭検出　Sobel";
+"Sobel_subtitle" = "Sobelオペレータを用いて1次の微分画像を求めます";
+
+"Laplacian_title" = "輪郭検出　Laplacian";
+"Laplacian_subtitle" = "2次微分画像のラプラシアンを求めます";
+
+"Canny_title" = "輪郭検出　Canny";
+"Canny_subtitle" = "Cannyアルゴリズムを用いて画像のエッジを検出します";
+
+
+"Converter_title" = "変換なし";
+"Converter_subtitle" = "-";
+
+"GaussianBlur_title" = "平滑化　GaussianBlur";
+"GaussianBlur_subtitle" = "ガウシアンフィルタを用いてぼかします";
+
+"MedianBlur_title" = "平滑化　MedianBlur";
+"MedianBlur_subtitle" = "メディアンフィルタを用いてぼかします";
+
+"BilateralFilter_title" = "平滑化　BilateralFilter [エラー]";
+"BilateralFilter_subtitle" = "バイラテラルフィルタを用いてぼかします";
+
+"BoxFilter_title" = "平滑化　BoxFilter";
+"BoxFilter_subtitle" = "ボックスフィルタを用いてぼかします";
+
+"Blur_title" = "平滑化　Blur";
+"Blur_subtitle" = "正規化されたボックスフィルタを用いてぼかします";
+
+"K-means_title" = "減色化　K-means [エラー]";
+"K-means_subtitle" = "K-meansによってピクセル値のクラスタリングを行います";
+
+"EllipticalFitting_title" = "楕円フィッティング";
+"EllipticalFitting_subtitle" = "画像から輪郭を検出し、楕円フィッティングを行います";
+
+"Houghlines_title" = "直線検出 古典的Hough";
+"Houghlines_subtitle" = "標準ハフ変換を用いて2値画像から直線を検出します";
+
+"HoughlinesP_title" = "直線検出 確率的Hough";
+"HoughlinesP_subtitle" = "確率的ハフ変換を用いて2値画像から線分を検出します";
+
+"ORB_title" = "特徴点検出 ORB";
+"ORB_subtitle" = "ORB検出器を用いて特徴点を検出します";
+
+"FaceDetection_title" = "顔検出";
+"FaceDetection_subtitle" = "顔と目を検出し、円で囲みます";
+
+"HumanDetection_title" = "人検出 [エラー]";
+"HumanDetection_subtitle" = "立っている人を検出します";
