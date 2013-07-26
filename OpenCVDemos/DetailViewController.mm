@@ -36,6 +36,9 @@
 // ネガポジ反転インスタンス作成
 id negapoji = [[NegaPosi alloc] init];
 
+// 画像回転インスタンス作成
+id orientationRight = [[OrientationRight alloc] init];
+
 //FPS測定用変数
 int countFPS;
 
@@ -73,11 +76,14 @@ AVCaptureConnection *videoConnection;
     
     // スライダーの初期値を通知
     converter.gain = _levelSlider.value;
-    infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f",_levelSlider.value];
-    infoLabel02.text = [converter getGainFormat];
+    converter.gain2nd = _levelSlider2nd.value;
+    //infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f",_levelSlider.value];
+    infoLabel01.text = [converter getGainFormat];
+    infoLabel02.text = [converter getGain2ndFormat];
 
     // スライダーが変更されたとき
     [_levelSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [_levelSlider2nd addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 // MasterViewへ戻るときのイベント
@@ -174,41 +180,25 @@ AVCaptureConnection *videoConnection;
 }
 
 
-// UIImagePickerの呼び出し
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    effBufImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-        // 画像の加工
-        UIImage *effectImage = [self processWithOpenCV: effBufImage];
-        
-        // 加工した画像の表示
-        self.imageView.image = effectImage;
-        
-        // 静止画をアルバムに保存
-        //UIImageWriteToSavedPhotosAlbum(effectImage, nil, nil, nil);
-        
-        // インフォメーションラベル更新
-        [self refreshInfoLabel];
-    }];
-}
-
 // OpenCV関数を使って画像を変換します
 - (UIImage*) processWithOpenCV: (UIImage*) image
 {
     // 元となる画像の定義
     cv::Mat src_img = [Utils CVMatFromUIImage:image];
     
-    // 変換処理
+    // Saved Photos 選択時は変換前に回転させる
+    if (img_source == 2) {
+        src_img = [orientationRight convert:src_img];
+    }
+    
+   // 変換処理
     src_img = [converter convert:src_img];
     
     // ネガポジ反転有効時
     if (invertSW) {
         src_img = [negapoji convert:src_img];
     }
-        
+    
     UIImage *effectedImage = [Utils UIImageFromCVMat:src_img];
     
     return effectedImage;
@@ -220,7 +210,7 @@ AVCaptureConnection *videoConnection;
 - (void)photoButtonTouched
 {
     // num = 0 or 2 だったら静止画変換モード
-    // num = 3（キャンセル）だとアルバム
+    // num = 3（キャンセル）だとフォトライブラリ
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     switch (img_source) {
         case 0: {
@@ -238,7 +228,7 @@ AVCaptureConnection *videoConnection;
         }
         case 3: {
             NSLog(@"Cancel");
-            sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
             break;
     }
@@ -259,6 +249,28 @@ AVCaptureConnection *videoConnection;
         // エラー処理
         NSLog(@"Photo Err!!");
     }
+}
+
+// UIImagePickerの呼び出し
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    effBufImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        // 画像の加工
+        UIImage *effectImage;
+        effectImage = [self processWithOpenCV: effBufImage];
+
+        // 加工した画像の表示
+        self.imageView.image = effectImage;
+        
+        // 静止画をアルバムに保存
+        //UIImageWriteToSavedPhotosAlbum(effectImage, nil, nil, nil);
+        
+        // インフォメーションラベル更新
+        [self refreshInfoLabel];
+    }];
 }
 
 // 右上のボタン（カメラのフロント/バック切り替え）を押したとき
@@ -309,7 +321,8 @@ AVCaptureConnection *videoConnection;
     if (img_source != 1) {
         
         // 画像の加工
-        UIImage *effectImage = [self processWithOpenCV: effBufImage];
+        UIImage *effectImage;
+        effectImage = [self processWithOpenCV: effBufImage];
         
         //加工した画像の表示
         self.imageView.image = effectImage;
@@ -331,13 +344,15 @@ AVCaptureConnection *videoConnection;
     if (invertSW)
     {
         invertSW = NO;
-        self.invertBtn.tintColor = [UIColor magentaColor];
+        self.invertBtn.tintColor = [UIColor grayColor];
         // 色が変わらない..??
+        //AudioServicesPlaySystemSound(1109);
     }
     else
     {
         invertSW = YES;
-        self.invertBtn.tintColor = [UIColor grayColor];
+        self.invertBtn.tintColor = [UIColor magentaColor];
+        //AudioServicesPlaySystemSound(1305);
     }
 }
 
@@ -378,10 +393,17 @@ AVCaptureConnection *videoConnection;
 
 // スライダ値を取得
 - (IBAction) sliderValueChanged:(UISlider *)sender {
-    converter.gain = [sender value];
-    infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f", [sender value]];
-    infoLabel02.text = [converter getGainFormat];
 }
+- (IBAction)levelSlider:(UISlider *)sender {
+    converter.gain = [sender value];
+    //infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f", [sender value]];
+    infoLabel01.text = [converter getGainFormat];
+}
+- (IBAction)levelSlider2nd:(UISlider *)sender {
+    converter.gain2nd = [sender value];
+    infoLabel02.text = [converter getGain2ndFormat];
+}
+
 
 
 #pragma mark - Label
@@ -420,15 +442,15 @@ AVCaptureConnection *videoConnection;
     
     
     // インフォメーションモニタラベル設置
-    CGRect rect01 = CGRectMake(0, 20, 100, 40);
+    CGRect rect01 = CGRectMake(0, 20, 100, 60);
     infoLabel01 = [[UILabel alloc]initWithFrame:rect01];
-    CGRect rect02 = CGRectMake(0, 60, 100, 60);
+    CGRect rect02 = CGRectMake(0, 80, 100, 60);
     infoLabel02 = [[UILabel alloc]initWithFrame:rect02];
-    CGRect rect03 = CGRectMake(0, 120, 100, 40);
+    CGRect rect03 = CGRectMake(0, 140, 100, 40);
     infoLabel03 = [[UILabel alloc]initWithFrame:rect03];
     
     // インフォメーションモニタラベルの書式設定
-    infoLabel01.text = [NSString stringWithFormat:@"Slider value\n  -  "];
+    infoLabel01.text = [NSString stringWithFormat:@"Information\n  -  "];
     infoLabel01.textColor = [UIColor whiteColor];
     infoLabel01.shadowColor = [UIColor blackColor];
     infoLabel01.shadowOffset = CGSizeMake(1, 1);

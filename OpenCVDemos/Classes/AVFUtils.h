@@ -15,5 +15,4 @@
 
 + (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation;
 
-
 @end

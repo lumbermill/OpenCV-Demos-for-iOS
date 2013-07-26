@@ -17,7 +17,12 @@
 }
 
 - (NSString *)getGainFormat{
-    return [NSString stringWithFormat:@"Threshold\n %.2f",self.gain*255];
+    return [NSString stringWithFormat:@"No Information"];
+    
+}
+
+- (NSString *)getGain2ndFormat{
+    return [NSString stringWithFormat:@"No Information"];
     
 }
 

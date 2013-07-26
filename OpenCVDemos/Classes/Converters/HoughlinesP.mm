@@ -37,4 +37,9 @@
     return work_img;
 }
 
+- (NSString *)getGainFormat{
+    return [NSString stringWithFormat:@"Threshold\n %.2f",self.gain*255];
+    
+}
+
 @end

@@ -12,9 +12,11 @@
 @interface Converter : NSObject
 
 @property float gain;
+@property float gain2nd;
 
 - (cv::Mat)convert:(cv::Mat)src_img;
 - (NSString *) getGainFormat;
+- (NSString *)getGain2ndFormat;
 - (id)init;
 
 @end

@@ -1,0 +1,24 @@
+
+/* Class = "IBUITableViewController"; title = "Master"; ObjectID = "12"; */
+"12.title" = "Master";
+
+/* Class = "IBUIViewController"; title = "Detail"; ObjectID = "21"; */
+"21.title" = "Detail";
+
+/* Class = "IBUINavigationItem"; title = "Image viewer"; ObjectID = "26"; */
+"26.title" = "Image viewer";
+
+/* Class = "IBUINavigationItem"; title = "OpenCV functions"; ObjectID = "36"; */
+"36.title" = "OpenCV functions";
+
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "900-Ac-EX7"; */
+"900-Ac-EX7.text" = "Subtitle";
+
+/* Class = "IBUIBarButtonItem"; title = "Invert"; ObjectID = "UiL-ee-RhJ"; */
+"UiL-ee-RhJ.title" = "Invert";
+
+/* Class = "IBUIBarButtonItem"; title = "Reload"; ObjectID = "m0P-r9-tCN"; */
+"m0P-r9-tCN.title" = "Reload";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "phq-AM-6qj"; */
+"phq-AM-6qj.text" = "Title";

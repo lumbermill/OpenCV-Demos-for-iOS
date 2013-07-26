@@ -23,8 +23,4 @@
     return work_img;
 }
 
-- (NSString *)getGainFormat{
-    return [NSString stringWithFormat:@"No Information"];
-}
-
 @end

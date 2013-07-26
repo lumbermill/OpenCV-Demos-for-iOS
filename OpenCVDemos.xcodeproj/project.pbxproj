@@ -32,6 +32,7 @@
 		2B26094A1786602800BE100A /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B2609491786602800BE100A /* Utils.mm */; };
 		2B37D73A17A2010000A0567E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B37D73917A2010000A0567E /* QuartzCore.framework */; };
 		2B37D73D17A21B0200A0567E /* AVFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B37D73C17A21B0200A0567E /* AVFUtils.m */; };
+		2B37D74017A267F000A0567E /* OrientationRight.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B37D73F17A267F000A0567E /* OrientationRight.mm */; };
 		2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B45A57E178BE6D500662FDA /* opencv2.framework */; };
 		2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */; };
 		2BAE8298179CCC9900E466FE /* Binary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE8297179CCC9900E466FE /* Binary.mm */; };
@@ -74,7 +75,6 @@
 		2B1C95F9179E0ABE006700FD /* HumanDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HumanDetection.mm; sourceTree = "<group>"; };
 		2B1C95FB179E282C006700FD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2B1C9600179E4CFC006700FD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2B1C9602179E4F09006700FD /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ja; path = ja.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2B1C9603179E4F09006700FD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2B1C9604179E4F09006700FD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B26091517865C0000BE100A /* OpenCVDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +87,6 @@
 		2B26092617865C0000BE100A /* OpenCVDemos-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenCVDemos-Prefix.pch"; sourceTree = "<group>"; };
 		2B26092717865C0000BE100A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B26092817865C0000BE100A /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		2B26093117865C0000BE100A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2B26093317865C0000BE100A /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		2B26093417865C0000BE100A /* MasterViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MasterViewController.mm; sourceTree = "<group>"; };
 		2B26093617865C0000BE100A /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -100,6 +99,11 @@
 		2B37D73917A2010000A0567E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2B37D73B17A21B0200A0567E /* AVFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFUtils.h; sourceTree = "<group>"; };
 		2B37D73C17A21B0200A0567E /* AVFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFUtils.m; sourceTree = "<group>"; };
+		2B37D73E17A267F000A0567E /* OrientationRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrientationRight.h; sourceTree = "<group>"; };
+		2B37D73F17A267F000A0567E /* OrientationRight.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OrientationRight.mm; sourceTree = "<group>"; };
+		2B37D74117A281A100A0567E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		2B37D74317A2822100A0567E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
+		2B37D74C17A290D800A0567E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2B45A57E178BE6D500662FDA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		2B4A21F917A0F5CC001567EF /* CircleDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetection.h; sourceTree = "<group>"; };
 		2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CircleDetection.mm; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 		22933DA91798D735001EB809 /* Converters */ = {
 			isa = PBXGroup;
 			children = (
+				2B37D73E17A267F000A0567E /* OrientationRight.h */,
+				2B37D73F17A267F000A0567E /* OrientationRight.mm */,
 				22933DB91798DC66001EB809 /* NegaPosi.h */,
 				22933DBA1798DC66001EB809 /* NegaPosi.mm */,
 				2BAE8299179CFB3100E466FE /* GrayScale.h */,
@@ -365,6 +371,7 @@
 			knownRegions = (
 				en,
 				ja,
+				Base,
 			);
 			mainGroup = 2B26090C17865C0000BE100A;
 			productRefGroup = 2B26091617865C0000BE100A /* Products */;
@@ -431,6 +438,7 @@
 				2B1C95FA179E0ABE006700FD /* HumanDetection.mm in Sources */,
 				2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */,
 				2B37D73D17A21B0200A0567E /* AVFUtils.m in Sources */,
+				2B37D74017A267F000A0567E /* OrientationRight.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,8 +466,9 @@
 		2B26093017865C0000BE100A /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2B26093117865C0000BE100A /* en */,
-				2B1C9602179E4F09006700FD /* ja */,
+				2B37D74117A281A100A0567E /* Base */,
+				2B37D74317A2822100A0567E /* en */,
+				2B37D74C17A290D800A0567E /* ja */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

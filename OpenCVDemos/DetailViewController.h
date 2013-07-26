@@ -11,6 +11,7 @@
 #import <opencv2/opencv.hpp>
 #import "Converter.h"
 #import "NegaPosi.h"
+#import "OrientationRight.h"
 
 
 @interface DetailViewController : UIViewController
@@ -23,12 +24,15 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *levelSlider;
+- (IBAction)levelSlider:(UISlider *)sender;
+@property (weak, nonatomic) IBOutlet UISlider *levelSlider2nd;
+- (IBAction)levelSlider2nd:(UISlider *)sender;
 
 //@property (strong, nonatomic) NSIndexPath *detailItem;
 //@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @property (nonatomic) UIImage *effBufImage;
-@property (nonatomic) UIImagePickerControllerSourceType sourceType;
+//@property (nonatomic) UIImagePickerControllerSourceType sourceType;
 
 @property (nonatomic) int img_source;
 @property (nonatomic) UILabel *fpsLabel;
