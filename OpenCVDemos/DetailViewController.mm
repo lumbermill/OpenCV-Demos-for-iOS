@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "Utils.h"
+#import "AVFUtils.h"
 
 @implementation DetailViewController {
     AVCaptureSession *session;
@@ -41,10 +42,11 @@ int countFPS;
 //FPS測定用タイマー
 NSTimer *timer = [[NSTimer alloc]init];
 
-// 現在のキャプチャ入力デバイス
+// 現在のキャプチャデバイス
 AVCaptureDevice *device;
 AVCaptureDeviceInput *videoInput;
-
+AVCaptureVideoDataOutput *videoOutput;
+AVCaptureConnection *videoConnection;
 
 #pragma mark - Initialize
 - (void)viewDidLoad
@@ -84,10 +86,7 @@ AVCaptureDeviceInput *videoInput;
 //    NSLog(@"Back to Master");
     [session stopRunning];
     [timer invalidate];
-    
-    //[[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-    //[[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-    
+        
     [super viewDidDisappear:animated];
 }
 
@@ -98,53 +97,59 @@ AVCaptureDeviceInput *videoInput;
     if (img_source == 1) {
         
         // ビデオキャプチャの定義
-//        AVCaptureDevice *d = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-//        AVCaptureDeviceInput *cdi = [AVCaptureDeviceInput deviceInputWithDevice:d error:NULL];
-        device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:NULL];
-        NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-        [settings setObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
         
-        //
-        AVCaptureVideoDataOutput *cvdo = [[AVCaptureVideoDataOutput alloc] init];
-        cvdo.videoSettings = settings;
-        [cvdo setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
-        [cvdo setAlwaysDiscardsLateVideoFrames:YES];
-        
-        //
+        // セッションの定義
         session = [[AVCaptureSession alloc] init];
         session.sessionPreset = AVCaptureSessionPreset640x480;
-        [session commitConfiguration];
- 
-/*
-        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(onOrientationChanged:)
-                                                     name:UIDeviceOrientationDidChangeNotification
-                                                   object:nil];
-*/
-        // ビデオ入力のAVCaptureConnectionを取得
-        AVCaptureConnection *captConnection = [cvdo connectionWithMediaType:AVMediaTypeVideo];
-        captConnection.videoOrientation = [self videoOrientationFromDeviceOrientation:[UIDevice currentDevice].orientation];
+        [session beginConfiguration];
 
+        // デバイスの定義
+        device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         
-        // ビデオのキャプチャを開始
+        // キャプチャ入力の定義
+        videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:NULL];
+        
+        // セッションに入力を追加
+        bool canInputSession = NO;
         if ([session canAddInput:videoInput]) {
             [session addInput:videoInput];
-            [session addOutput:cvdo];
-            
-            [session startRunning];
-            
+            canInputSession = YES;
+        }
+        
+        // キャプチャ出力の定義
+        videoOutput =  [[AVCaptureVideoDataOutput alloc] init];
+        NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+        [settings setObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+        videoOutput.videoSettings = settings;
+        [videoOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+        [videoOutput setAlwaysDiscardsLateVideoFrames:YES];
 
+        // セッションに出力を追加
+        bool canOutputSession = NO;
+        if ([session canAddOutput:videoOutput]) {
+            [session addOutput:videoOutput];
+            canOutputSession = YES;
+        }
+        
+        // ビデオ入力のAVCaptureConnectionを取得 <- addInputとaddOutputが終わってから
+        videoConnection = [videoOutput connectionWithMediaType:AVMediaTypeVideo];
+        // 本体の向きをAVFoundationへ通知
+        videoConnection.videoOrientation = [AVFUtils videoOrientationFromDeviceOrientation:[UIDevice currentDevice].orientation];
+        
+ 
+        [session commitConfiguration];
+        
+        // ビデオのキャプチャを開始
+        if (canInputSession && canOutputSession)
+        {
+            [session startRunning];
             [self startTimer];
         }
         else {
             // エラー処理
-            NSLog(@"Input Err!!");
+            NSLog(@"Session Err!!");
         }
-        
     }
-//    NSLog(@"viewDidAppear");
     [super viewDidAppear:animated];
 }
 
@@ -153,51 +158,21 @@ AVCaptureDeviceInput *videoInput;
 // キャプチャ中は常に呼び出される
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
-    // イメージバッファの取得
-    CVImageBufferRef    buffer;
-    buffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    
-    // イメージバッファのロック
-    CVPixelBufferLockBaseAddress(buffer, 0);
-    
-    // イメージバッファ情報の取得
-    uint8_t*    base;
-    size_t      width, height, bytesPerRow;
-    base = (uint8_t*)CVPixelBufferGetBaseAddress(buffer);
-    width = CVPixelBufferGetWidth(buffer);
-    height = CVPixelBufferGetHeight(buffer);
-    bytesPerRow = CVPixelBufferGetBytesPerRow(buffer);
-    
-    // ビットマップコンテキストの作成
-    CGColorSpaceRef colorSpace;
-    CGContextRef    cgContext;
-    colorSpace = CGColorSpaceCreateDeviceRGB();
-    cgContext = CGBitmapContextCreate(
-                                      base, width, height, 8, bytesPerRow, colorSpace,
-                                      kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-    CGColorSpaceRelease(colorSpace);
-    
-    // 画像の加工
-    CGImageRef  cgImage;
-    cgImage = CGBitmapContextCreateImage(cgContext);
-    UIImage*  image = [UIImage imageWithCGImage:cgImage];
+ 
+    // イメージバッファから画像を作成
+    UIImage *image = [AVFUtils imageFromSampleBuffer:sampleBuffer];
     UIImage*  effectImage;
     
-    CGImageRelease(cgImage);
-    CGContextRelease(cgContext);
-    
+    // 画像の加工
     effectImage = [self processWithOpenCV: image];
-    
-    // イメージバッファのアンロック
-    CVPixelBufferUnlockBaseAddress(buffer, 0);
-    
+        
     // 画像の表示
     self.imageView.image = effectImage;
-    //self.imageView.image = image;
     
     //FPS測定
     countFPS++;
 }
+
 
 // UIImagePickerの呼び出し
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -221,14 +196,10 @@ AVCaptureDeviceInput *videoInput;
 }
 
 // OpenCV関数を使って画像を変換します
-- (UIImage*) processWithOpenCV: (UIImage*) cgImage
+- (UIImage*) processWithOpenCV: (UIImage*) image
 {
-    
-    // 正位置に回転
-//    UIImage *img = [UIImage imageWithCGImage:cgImage.CGImage scale:1.0f orientation:UIImageOrientationRight];
-    
     // 元となる画像の定義
-    cv::Mat src_img = [Utils CVMatFromUIImage:cgImage];
+    cv::Mat src_img = [Utils CVMatFromUIImage:image];
     
     // 変換処理
     src_img = [converter convert:src_img];
@@ -238,43 +209,9 @@ AVCaptureDeviceInput *videoInput;
         src_img = [negapoji convert:src_img];
     }
         
-    //CGImageRef effectedCgImage = [Utils CGImageFromCVMat:src_img];
     UIImage *effectedImage = [Utils UIImageFromCVMat:src_img];
     
-    // 何故か回転してしまうので、元に戻しています
-    return [UIImage imageWithCGImage:effectedImage.CGImage scale:1.0f orientation:UIImageOrientationRight];
-    //return effectedImage;
-}
-
-
-// 本体の向きを取得
-- (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation
-{
-    AVCaptureVideoOrientation orientation;
-    switch (deviceOrientation) {
-        case UIDeviceOrientationUnknown:
-            orientation = AVCaptureVideoOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortrait:
-            orientation = AVCaptureVideoOrientationPortrait;
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            orientation = AVCaptureVideoOrientationPortraitUpsideDown;
-            break;
-        case UIDeviceOrientationLandscapeLeft:
-            orientation = AVCaptureVideoOrientationLandscapeRight;
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            orientation = AVCaptureVideoOrientationLandscapeLeft;
-            break;
-        case UIDeviceOrientationFaceUp:
-            orientation = AVCaptureVideoOrientationPortrait;
-            break;
-        case UIDeviceOrientationFaceDown:
-            orientation = AVCaptureVideoOrientationPortrait;
-            break;
-    }
-    return orientation;
+    return effectedImage;
 }
 
 
@@ -357,6 +294,9 @@ AVCaptureDeviceInput *videoInput;
     [session removeInput:videoInput];
     videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
     [session addInput:videoInput];
+    // 本体の向きをAVFoundationへ通知
+    videoConnection = [videoOutput connectionWithMediaType:AVMediaTypeVideo];
+    videoConnection.videoOrientation = [AVFUtils videoOrientationFromDeviceOrientation:[UIDevice currentDevice].orientation];
     [session commitConfiguration];
     [session startRunning];
 }

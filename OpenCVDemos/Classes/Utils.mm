@@ -120,6 +120,7 @@
 }
 
 
+// Byte -> KB
 + (NSString*)convertByteToKB:(NSInteger)byte {
     
     // NSNumberに変換 (単位:KB)

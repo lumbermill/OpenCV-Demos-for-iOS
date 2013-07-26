@@ -49,7 +49,4 @@
 - (IBAction)backButtonEvent:(id)sender;
 
 
-// デバイスの向きからカメラAPIの向きを判別する
-- (AVCaptureVideoOrientation)videoOrientationFromDeviceOrientation:(UIDeviceOrientation)deviceOrientation;
-
 @end

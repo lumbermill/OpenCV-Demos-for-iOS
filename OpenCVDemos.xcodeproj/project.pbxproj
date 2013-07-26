@@ -30,6 +30,8 @@
 		2B26094117865F0100BE100A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26094017865F0100BE100A /* CoreMedia.framework */; };
 		2B26094317865F3B00BE100A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B26094217865F3B00BE100A /* CoreVideo.framework */; };
 		2B26094A1786602800BE100A /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B2609491786602800BE100A /* Utils.mm */; };
+		2B37D73A17A2010000A0567E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B37D73917A2010000A0567E /* QuartzCore.framework */; };
+		2B37D73D17A21B0200A0567E /* AVFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B37D73C17A21B0200A0567E /* AVFUtils.m */; };
 		2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B45A57E178BE6D500662FDA /* opencv2.framework */; };
 		2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */; };
 		2BAE8298179CCC9900E466FE /* Binary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE8297179CCC9900E466FE /* Binary.mm */; };
@@ -95,6 +97,9 @@
 		2B26094217865F3B00BE100A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		2B2609481786602800BE100A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		2B2609491786602800BE100A /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
+		2B37D73917A2010000A0567E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2B37D73B17A21B0200A0567E /* AVFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFUtils.h; sourceTree = "<group>"; };
+		2B37D73C17A21B0200A0567E /* AVFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFUtils.m; sourceTree = "<group>"; };
 		2B45A57E178BE6D500662FDA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		2B4A21F917A0F5CC001567EF /* CircleDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetection.h; sourceTree = "<group>"; };
 		2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CircleDetection.mm; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B37D73A17A2010000A0567E /* QuartzCore.framework in Frameworks */,
 				2B1C95FC179E282D006700FD /* AudioToolbox.framework in Frameworks */,
 				225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */,
 				2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */,
@@ -175,6 +181,8 @@
 			children = (
 				2B2609481786602800BE100A /* Utils.h */,
 				2B2609491786602800BE100A /* Utils.mm */,
+				2B37D73B17A21B0200A0567E /* AVFUtils.h */,
+				2B37D73C17A21B0200A0567E /* AVFUtils.m */,
 				22933DA91798D735001EB809 /* Converters */,
 				22933DB01798DA44001EB809 /* Converter.h */,
 				22933DB11798DA44001EB809 /* Converter.mm */,
@@ -282,6 +290,7 @@
 				2B26091817865C0000BE100A /* UIKit.framework */,
 				2B26091A17865C0000BE100A /* Foundation.framework */,
 				2B26091C17865C0000BE100A /* CoreGraphics.framework */,
+				2B37D73917A2010000A0567E /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -421,6 +430,7 @@
 				2BAE82CB179D234200E466FE /* ORB.mm in Sources */,
 				2B1C95FA179E0ABE006700FD /* HumanDetection.mm in Sources */,
 				2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */,
+				2B37D73D17A21B0200A0567E /* AVFUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

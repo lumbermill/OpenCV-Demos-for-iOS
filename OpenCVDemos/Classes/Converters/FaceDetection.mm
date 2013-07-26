@@ -45,8 +45,11 @@ cv::CascadeClassifier* cascade2;
     cv::resize(work_img, smallImg, smallImg.size(), 0, 0, cv::INTER_LINEAR);
     cv::equalizeHist(smallImg, smallImg);
 
-    
-    // カメラからの入力が回転しているため、検出器が働かなかった
+
+    // 注）標準のカメラアプリで撮影した写真は回転しているため、正位置での顔検出はできません。
+    // 　　このアプリで撮影した写真は正位置で顔検出できます。
+/*
+    // カメラからの入力が回転しているため、検出器が働かなかった ->　カメラ画像を正位置に修正
     // 回転： -90 [deg], スケーリング： 1.0 [倍]
     float angle = -90;
     float rotateScale = 1.0;
@@ -55,7 +58,7 @@ cv::CascadeClassifier* cascade2;
     // 以上の条件から2次元の回転行列を計算
     const cv::Mat affine_matrix = cv::getRotationMatrix2D( center, angle, rotateScale );
     cv::warpAffine(smallImg, smallImg, affine_matrix, smallImg.size());
-
+*/
     
     std::vector<cv::Rect> faces;
     
@@ -81,7 +84,6 @@ cv::CascadeClassifier* cascade2;
         cv:: Mat smallImgROI = smallImg(*r);
         std::vector<cv::Rect> nestedObjects;
         
-/*
         /// マルチスケール（目）探索
         // 画像，出力矩形，縮小スケール，最低矩形数，（フラグ），最小矩形
         cascade2->detectMultiScale(smallImgROI, nestedObjects,
@@ -98,7 +100,6 @@ cv::CascadeClassifier* cascade2;
             radius = cv::saturate_cast<int>((nr->width + nr->height)*0.25*scale);
             cv::circle( src_img, center, radius, cv::Scalar(255,0,0), 2, 8, 0 );
         }
-*/ 
     }
     
     return src_img;
