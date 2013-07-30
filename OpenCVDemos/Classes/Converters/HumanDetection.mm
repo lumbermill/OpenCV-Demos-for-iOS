@@ -46,7 +46,7 @@
 }
 
 - (NSString *)getGainFormat{
-    return [NSString stringWithFormat:@"Threshold\n T1:%.2f",self.gain*255];
+    return [NSString stringWithFormat:@"Threshold\n T1:%.2f",self.gain*0.4];
     
 }
 
