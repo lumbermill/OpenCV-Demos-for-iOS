@@ -1,5 +1,5 @@
 /* 
-  Localizable.strings
+  Localizable.strings(Japanese)
   OpenCVDemos
 
   Created by 國武　正督 on 2013/07/23.
@@ -60,8 +60,8 @@
 "Blur_title" = "平滑化　Blur";
 "Blur_subtitle" = "正規化されたボックスフィルタを用いてぼかします";
 
-"K-means_title" = "減色化　K-means [エラー]";
-"K-means_subtitle" = "K-meansによってピクセル値のクラスタリングを行います";
+"K_means_title" = "減色化　K-means";
+"K_means_subtitle" = "K-meansによってピクセル値のクラスタリングを行います";
 
 "CircleDetection_title" = "円検出";
 "CircleDetection_subtitle" = "円を検出します";
@@ -81,5 +81,8 @@
 "FaceDetection_title" = "顔検出";
 "FaceDetection_subtitle" = "顔と目を検出し、円で囲みます";
 
-"HumanDetection_title" = "人検出 [エラー]";
+"HumanDetection_title" = "人検出";
 "HumanDetection_subtitle" = "立っている人を検出します";
+
+"Picturization_title" = "絵画風変換";
+"Picturization_subtitle" = "写真を絵画風に変換します";

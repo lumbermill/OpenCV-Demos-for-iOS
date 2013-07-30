@@ -35,6 +35,7 @@
 		2B37D74017A267F000A0567E /* OrientationRight.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B37D73F17A267F000A0567E /* OrientationRight.mm */; };
 		2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B45A57E178BE6D500662FDA /* opencv2.framework */; };
 		2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */; };
+		2B54A4AB17A623AD009522F4 /* Picturization.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B54A4AA17A623AC009522F4 /* Picturization.mm */; };
 		2BAE8298179CCC9900E466FE /* Binary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE8297179CCC9900E466FE /* Binary.mm */; };
 		2BAE829B179CFB3100E466FE /* GrayScale.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE829A179CFB3100E466FE /* GrayScale.mm */; };
 		2BAE829E179D0A6D00E466FE /* Trunk.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE829D179D0A6D00E466FE /* Trunk.mm */; };
@@ -48,7 +49,7 @@
 		2BAE82B6179D132D00E466FE /* BilateralFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82B5179D132C00E466FE /* BilateralFilter.mm */; };
 		2BAE82B9179D135200E466FE /* BoxFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82B8179D135000E466FE /* BoxFilter.mm */; };
 		2BAE82BC179D137A00E466FE /* Blur.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82BB179D137900E466FE /* Blur.mm */; };
-		2BAE82BF179D13A600E466FE /* K-means.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82BE179D13A400E466FE /* K-means.mm */; };
+		2BAE82BF179D13A600E466FE /* K_means.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82BE179D13A400E466FE /* K_means.mm */; };
 		2BAE82C2179D146300E466FE /* EllipticalFitting.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82C1179D146100E466FE /* EllipticalFitting.mm */; };
 		2BAE82C5179D14A200E466FE /* Houghlines.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82C4179D14A000E466FE /* Houghlines.mm */; };
 		2BAE82C8179D14BA00E466FE /* HoughlinesP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE82C7179D14B900E466FE /* HoughlinesP.mm */; };
@@ -103,10 +104,12 @@
 		2B37D73F17A267F000A0567E /* OrientationRight.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OrientationRight.mm; sourceTree = "<group>"; };
 		2B37D74117A281A100A0567E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2B37D74317A2822100A0567E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
-		2B37D74C17A290D800A0567E /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2B45A57E178BE6D500662FDA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		2B4A21F917A0F5CC001567EF /* CircleDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetection.h; sourceTree = "<group>"; };
 		2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CircleDetection.mm; sourceTree = "<group>"; };
+		2B54A4A917A623AB009522F4 /* Picturization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picturization.h; sourceTree = "<group>"; };
+		2B54A4AA17A623AC009522F4 /* Picturization.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Picturization.mm; sourceTree = "<group>"; };
+		2B54A4AF17A6639F009522F4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2BAE8296179CCC9800E466FE /* Binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binary.h; sourceTree = "<group>"; };
 		2BAE8297179CCC9900E466FE /* Binary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Binary.mm; sourceTree = "<group>"; };
 		2BAE8299179CFB3100E466FE /* GrayScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayScale.h; sourceTree = "<group>"; };
@@ -133,8 +136,8 @@
 		2BAE82B8179D135000E466FE /* BoxFilter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BoxFilter.mm; sourceTree = "<group>"; };
 		2BAE82BA179D137800E466FE /* Blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blur.h; sourceTree = "<group>"; };
 		2BAE82BB179D137900E466FE /* Blur.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Blur.mm; sourceTree = "<group>"; };
-		2BAE82BD179D13A300E466FE /* K-means.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "K-means.h"; sourceTree = "<group>"; };
-		2BAE82BE179D13A400E466FE /* K-means.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "K-means.mm"; sourceTree = "<group>"; };
+		2BAE82BD179D13A300E466FE /* K_means.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = K_means.h; sourceTree = "<group>"; };
+		2BAE82BE179D13A400E466FE /* K_means.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = K_means.mm; sourceTree = "<group>"; };
 		2BAE82C0179D146000E466FE /* EllipticalFitting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EllipticalFitting.h; sourceTree = "<group>"; };
 		2BAE82C1179D146100E466FE /* EllipticalFitting.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EllipticalFitting.mm; sourceTree = "<group>"; };
 		2BAE82C3179D149F00E466FE /* Houghlines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Houghlines.h; sourceTree = "<group>"; };
@@ -227,8 +230,8 @@
 				2BAE82B8179D135000E466FE /* BoxFilter.mm */,
 				2BAE82BA179D137800E466FE /* Blur.h */,
 				2BAE82BB179D137900E466FE /* Blur.mm */,
-				2BAE82BD179D13A300E466FE /* K-means.h */,
-				2BAE82BE179D13A400E466FE /* K-means.mm */,
+				2BAE82BD179D13A300E466FE /* K_means.h */,
+				2BAE82BE179D13A400E466FE /* K_means.mm */,
 				2B4A21F917A0F5CC001567EF /* CircleDetection.h */,
 				2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */,
 				2BAE82C0179D146000E466FE /* EllipticalFitting.h */,
@@ -243,17 +246,19 @@
 				2255669F17994FE20015F7B9 /* FaceDetection.mm */,
 				2B1C95F8179E0ABD006700FD /* HumanDetection.h */,
 				2B1C95F9179E0ABE006700FD /* HumanDetection.mm */,
+				2B54A4A917A623AB009522F4 /* Picturization.h */,
+				2B54A4AA17A623AC009522F4 /* Picturization.mm */,
 			);
 			path = Converters;
 			sourceTree = "<group>";
 		};
-		22DD29461799466F002C6EF5 /* Resouces */ = {
+		22DD29461799466F002C6EF5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				225566A417996B950015F7B9 /* Layouts */,
 				22DD29471799468D002C6EF5 /* Cascades */,
 			);
-			name = Resouces;
+			name = Resources;
 			path = Resources.xml;
 			sourceTree = "<group>";
 		};
@@ -304,7 +309,7 @@
 		2B26091E17865C0000BE100A /* OpenCVDemos */ = {
 			isa = PBXGroup;
 			children = (
-				22DD29461799466F002C6EF5 /* Resouces */,
+				22DD29461799466F002C6EF5 /* Resources */,
 				22933DA51798D397001EB809 /* Classes */,
 				2B26092717865C0000BE100A /* AppDelegate.h */,
 				2B26092817865C0000BE100A /* AppDelegate.mm */,
@@ -430,7 +435,7 @@
 				2BAE82B6179D132D00E466FE /* BilateralFilter.mm in Sources */,
 				2BAE82B9179D135200E466FE /* BoxFilter.mm in Sources */,
 				2BAE82BC179D137A00E466FE /* Blur.mm in Sources */,
-				2BAE82BF179D13A600E466FE /* K-means.mm in Sources */,
+				2BAE82BF179D13A600E466FE /* K_means.mm in Sources */,
 				2BAE82C2179D146300E466FE /* EllipticalFitting.mm in Sources */,
 				2BAE82C5179D14A200E466FE /* Houghlines.mm in Sources */,
 				2BAE82C8179D14BA00E466FE /* HoughlinesP.mm in Sources */,
@@ -439,6 +444,7 @@
 				2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */,
 				2B37D73D17A21B0200A0567E /* AVFUtils.m in Sources */,
 				2B37D74017A267F000A0567E /* OrientationRight.mm in Sources */,
+				2B54A4AB17A623AD009522F4 /* Picturization.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +474,7 @@
 			children = (
 				2B37D74117A281A100A0567E /* Base */,
 				2B37D74317A2822100A0567E /* en */,
-				2B37D74C17A290D800A0567E /* ja */,
+				2B54A4AF17A6639F009522F4 /* ja */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

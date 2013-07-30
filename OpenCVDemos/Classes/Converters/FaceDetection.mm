@@ -44,21 +44,6 @@ cv::CascadeClassifier* cascade2;
     // 処理時間短縮のために画像を縮小
     cv::resize(work_img, smallImg, smallImg.size(), 0, 0, cv::INTER_LINEAR);
     cv::equalizeHist(smallImg, smallImg);
-
-
-    // 注）標準のカメラアプリで撮影した写真は回転しているため、正位置での顔検出はできません。
-    // 　　このアプリで撮影した写真は正位置で顔検出できます。
-/*
-    // カメラからの入力が回転しているため、検出器が働かなかった ->　カメラ画像を正位置に修正
-    // 回転： -90 [deg], スケーリング： 1.0 [倍]
-    float angle = -90;
-    float rotateScale = 1.0;
-    // 中心：画像中心
-    cv::Point2f center(smallImg.cols*0.5, smallImg.rows*0.5);
-    // 以上の条件から2次元の回転行列を計算
-    const cv::Mat affine_matrix = cv::getRotationMatrix2D( center, angle, rotateScale );
-    cv::warpAffine(smallImg, smallImg, affine_matrix, smallImg.size());
-*/
     
     std::vector<cv::Rect> faces;
     
@@ -78,7 +63,7 @@ cv::CascadeClassifier* cascade2;
         face_center.x = cv::saturate_cast<int>((r->x + r->width*0.5)*scale);
         face_center.y = cv::saturate_cast<int>((r->y + r->height*0.5)*scale);
         face_radius = cv::saturate_cast<int>((r->width + r->height)*0.25*scale);
-        cv::circle( src_img, face_center, face_radius, cv::Scalar(80,80,255), 3, 8, 0 );
+        cv::circle( src_img, face_center, face_radius, cv::Scalar(0,255,0), 3, 8, 0 );
         
         // 
         cv:: Mat smallImgROI = smallImg(*r);
@@ -98,7 +83,7 @@ cv::CascadeClassifier* cascade2;
             center.x = cv::saturate_cast<int>((r->x + nr->x + nr->width*0.5)*scale);
             center.y = cv::saturate_cast<int>((r->y + nr->y + nr->height*0.5)*scale);
             radius = cv::saturate_cast<int>((nr->width + nr->height)*0.25*scale);
-            cv::circle( src_img, center, radius, cv::Scalar(255,0,0), 2, 8, 0 );
+            cv::circle( src_img, center, radius, cv::Scalar(80,80,255), 2, 8, 0 );
         }
     }
     

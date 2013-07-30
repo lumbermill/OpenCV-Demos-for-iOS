@@ -54,7 +54,7 @@
         <Converter>
             <class>BilateralFilter</class>
         </Converter>
--->        
+-->
         <Converter>
             <class>BoxFilter</class>
         </Converter>
@@ -62,11 +62,11 @@
         <Converter>
             <class>Blur</class>
         </Converter>
-<!--
+
         <Converter>
-            <class>K-means</class>
+            <class>K_means</class>
         </Converter>
--->        
+        
         <Converter>
             <class>CircleDetection</class>
         </Converter>
@@ -90,10 +90,14 @@
         <Converter>
             <class>FaceDetection</class>
         </Converter>
-<!--
+
         <Converter>
             <class>HumanDetection</class>
         </Converter>
- -->
+
+        <Converter>
+            <class>Picturization</class>
+        </Converter>
+        
     </Converters>
 </Layout>

@@ -28,11 +28,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *levelSlider2nd;
 - (IBAction)levelSlider2nd:(UISlider *)sender;
 
-//@property (strong, nonatomic) NSIndexPath *detailItem;
-//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
 @property (nonatomic) UIImage *effBufImage;
-//@property (nonatomic) UIImagePickerControllerSourceType sourceType;
 
 @property (nonatomic) int img_source;
 @property (nonatomic) UILabel *fpsLabel;
@@ -41,8 +37,6 @@
 @property (nonatomic) UILabel *infoLabel03;
 //@property (nonatomic) UILabel *infoLabel04;
 @property (nonatomic) bool invertSW;
-
-@property (assign, nonatomic) BOOL usingFrontCamera;
 
 - (IBAction)invertBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *invertBtn;

@@ -38,6 +38,7 @@
     // 円の半径の最大値
     cv::HoughCircles(work_img, circles, CV_HOUGH_GRADIENT, 1, self.gain*400, 20, 50, 10, 100);
     
+    // 円の描画
     std::vector<cv::Vec3f>::iterator it = circles.begin();
     for(; it!=circles.end(); ++it) {
         cv::Point center(cv::saturate_cast<int>((*it)[0]), cv::saturate_cast<int>((*it)[1]));

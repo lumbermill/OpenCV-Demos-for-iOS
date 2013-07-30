@@ -18,15 +18,17 @@
     cv::Mat work_img = src_img;
 
     // 入力画像，出力画像，カーネルサイズ，標準偏差x, y
-    cv::GaussianBlur(work_img, work_img, cv::Size(31,31), self.gain*20, self.gain*20);
-    // スライダ値によって引数を変更
+    cv::GaussianBlur(work_img, work_img, cv::Size(31,31), 0.01+self.gain*10, 0.01+self.gain2nd*10);
+    // スライダ値によって引数を変更 標準偏差がゼロになるとボケるので+0.01しています
     
     return work_img;
 }
 
 - (NSString *)getGainFormat{
-    return [[NSString stringWithFormat:@"Sigma\n X:%.2f",self.gain*20]
-            stringByAppendingFormat:@"\n Y:%.2f",self.gain*20];
+    return [NSString stringWithFormat:@"Sigma\n X:%.2f",0.01+self.gain*10];
+}
+- (NSString *)getGain2ndFormat{
+    return [NSString stringWithFormat:@"Sigma\n Y:%.2f",0.01+self.gain2nd*10];
 }
 
 @end

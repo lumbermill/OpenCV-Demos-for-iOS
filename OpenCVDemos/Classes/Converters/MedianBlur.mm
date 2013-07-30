@@ -10,6 +10,7 @@
 
 @implementation MedianBlur
 
+
 - (cv::Mat)convert:(cv::Mat) src_img{
     
     // メディアンフィルタを用いた平滑化（ぼかし）
@@ -18,16 +19,20 @@
     cv::Mat work_img = src_img;
 
     // 入力画像，出力画像，カーネルサイズ
-    //cv::medianBlur(work_img, work_img, gain*42);
-    cv::medianBlur(work_img, work_img, 21);
-    // スライダ値によって引数を変更　->するとエラー(奇数にならないとダメ）
-    // OpenCV Error: Assertion failed (ksize % 2 == 1) in medianBlur
+    int odd;
+    odd = 11 * self.gain;
+    odd = odd*2 + 1;
+    cv::medianBlur(work_img, work_img, odd);
+    // スライダ値によって引数を変更　->奇数にしないとダメ
 
     return work_img;
 }
 
 - (NSString *)getGainFormat{
-    return [NSString stringWithFormat:@"Kernel Size\n 21"];
+    int odd;
+    odd = 11 * self.gain;
+    odd = odd*2 + 1;
+    return [NSString stringWithFormat:@"Kernel Size\n %d",odd];
     
 }
 

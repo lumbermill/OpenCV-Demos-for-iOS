@@ -13,6 +13,7 @@
 
 @implementation DetailViewController {
     AVCaptureSession *session;
+
 }
 
 // ユーザーデフォルト（画像のソース選択結果）の呼び出し
@@ -50,6 +51,7 @@ AVCaptureDevice *device;
 AVCaptureDeviceInput *videoInput;
 AVCaptureVideoDataOutput *videoOutput;
 AVCaptureConnection *videoConnection;
+BOOL usingFrontCamera = NO;
 
 #pragma mark - Initialize
 - (void)viewDidLoad
@@ -77,7 +79,6 @@ AVCaptureConnection *videoConnection;
     // スライダーの初期値を通知
     converter.gain = _levelSlider.value;
     converter.gain2nd = _levelSlider2nd.value;
-    //infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f",_levelSlider.value];
     infoLabel01.text = [converter getGainFormat];
     infoLabel02.text = [converter getGain2ndFormat];
 
@@ -89,8 +90,10 @@ AVCaptureConnection *videoConnection;
 // MasterViewへ戻るときのイベント
 - (void)viewDidDisappear:(BOOL)animated
 {
-//    NSLog(@"Back to Master");
+    // キャプチャ停止
     [session stopRunning];
+    
+    // タイマー停止
     [timer invalidate];
         
     [super viewDidDisappear:animated];
@@ -110,7 +113,29 @@ AVCaptureConnection *videoConnection;
         [session beginConfiguration];
 
         // デバイスの定義
-        device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        // フロントカメラを使っていたとき
+        if(usingFrontCamera)
+        {
+            // フロントカメラを検索
+            for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+                if ([d position] == AVCaptureDevicePositionFront) {
+                    device = d;
+                    usingFrontCamera = YES;
+                    break;
+                }
+                else {
+                    // フロントカメラがなければデフォルトのカメラを使用
+                    device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+                    usingFrontCamera = NO;
+                }
+            }
+        }
+        // フロントカメラを使っていなかったとき
+        else {
+            // デフォルトのカメラを使用
+            device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+            usingFrontCamera = NO;
+        }
         
         // キャプチャ入力の定義
         videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:NULL];
@@ -277,11 +302,11 @@ AVCaptureConnection *videoConnection;
 - (void)changeCameraBtnTouched
 {
     // フロントカメラを使っていたとき
-    if(self.usingFrontCamera)
+    if(usingFrontCamera)
     {
         // デフォルトのカメラを使用
         device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        self.usingFrontCamera = NO;
+        usingFrontCamera = NO;
     }
 
     // フロントカメラを使っていなかったとき
@@ -290,13 +315,13 @@ AVCaptureConnection *videoConnection;
         for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
             if ([d position] == AVCaptureDevicePositionFront) {
                 device = d;
-                self.usingFrontCamera = YES;
+                usingFrontCamera = YES;
                 break;
             }
             else {
                 // フロントカメラがなければデフォルトのカメラを使用
                 device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-                self.usingFrontCamera = NO;
+                usingFrontCamera = NO;
             }
         }        
     }
@@ -396,7 +421,6 @@ AVCaptureConnection *videoConnection;
 }
 - (IBAction)levelSlider:(UISlider *)sender {
     converter.gain = [sender value];
-    //infoLabel01.text = [NSString stringWithFormat:@"Slider value\n %.3f", [sender value]];
     infoLabel01.text = [converter getGainFormat];
 }
 - (IBAction)levelSlider2nd:(UISlider *)sender {
@@ -442,11 +466,11 @@ AVCaptureConnection *videoConnection;
     
     
     // インフォメーションモニタラベル設置
-    CGRect rect01 = CGRectMake(0, 20, 100, 60);
+    CGRect rect01 = CGRectMake(0, 20, 100, 40);
     infoLabel01 = [[UILabel alloc]initWithFrame:rect01];
-    CGRect rect02 = CGRectMake(0, 80, 100, 60);
+    CGRect rect02 = CGRectMake(0, 60, 100, 40);
     infoLabel02 = [[UILabel alloc]initWithFrame:rect02];
-    CGRect rect03 = CGRectMake(0, 140, 100, 40);
+    CGRect rect03 = CGRectMake(0, 100, 100, 40);
     infoLabel03 = [[UILabel alloc]initWithFrame:rect03];
     
     // インフォメーションモニタラベルの書式設定

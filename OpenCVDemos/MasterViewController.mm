@@ -72,26 +72,26 @@
 #pragma mark - Table View
 - (void)makeConvertersTable
 {
-    
+    // Converterクラスのテーブル作成
     xmlChar *_xp_cvs= (xmlChar*)[@"//Converters"     cStringUsingEncoding:NSUTF8StringEncoding];
     xmlChar *_xp_cv = (xmlChar*)[@"/Converter"       cStringUsingEncoding:NSUTF8StringEncoding];
     xmlChar *_xp_cl = (xmlChar*)[@"/class/text()"    cStringUsingEncoding:NSUTF8StringEncoding];
-    //xmlChar *_xp_tt = (xmlChar*)[@"/title/text()"    cStringUsingEncoding:NSUTF8StringEncoding];
-    //xmlChar *_xp_st = (xmlChar*)[@"/subtitle/text()" cStringUsingEncoding:NSUTF8StringEncoding];
     
+    // xmlファイルのパス
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourceDirectoryPath = [bundle bundlePath];
     NSString *filename = [resourceDirectoryPath stringByAppendingString:@"/converters.xml"];
-    
+    // xpathコンテキスト作成
     xmlDocPtr document = xmlParseFile([filename cStringUsingEncoding:NSUTF8StringEncoding]);
     xmlXPathContextPtr context = xmlXPathNewContext(document);
-    
+    // xpathに対応するノードのオブジェクトを取得
     xmlXPathObjectPtr result = xmlXPathEvalExpression( _xp_cvs, context );
     xmlNodeSetPtr nodeset = result->nodesetval;
     
     _converters = [[NSMutableArray alloc] init];
     _converter_sections = [[NSMutableArray alloc] init];
     
+    // セクションの数だけ繰り返し
     for (int j=0; j<nodeset->nodeNr; j++) {
         xmlNodePtr node3 = xmlXPathNodeSetItem(nodeset, j);
         xmlXPathContextPtr context3 = xmlXPathNewContext((xmlDocPtr)node3);
@@ -102,13 +102,12 @@
         
         xmlChar *attr = xmlGetProp(nodeset->nodeTab[j], (const xmlChar*)"section");
         
+        // セルの数だけ繰り返し
         for (int i=0; i<nodeset3->nodeNr; i++) {
             xmlNodePtr node2 = xmlXPathNodeSetItem(nodeset3, i);
             xmlXPathContextPtr context2 = xmlXPathNewContext((xmlDocPtr)node2);
             
             xmlNodeSetPtr result21 = xmlXPathEvalExpression(_xp_cl, context2)->nodesetval;
-            //xmlNodeSetPtr result22 = xmlXPathEvalExpression(_xp_tt, context2)->nodesetval;
-            //xmlNodeSetPtr result23 = xmlXPathEvalExpression(_xp_st, context2)->nodesetval;
             
             NSMutableDictionary *_dic =  [NSMutableDictionary dictionary];
             NSString *classname = [NSString stringWithUTF8String:(char *)result21->nodeTab[0]->content];
@@ -125,10 +124,10 @@
         }
         
         [_converters addObject:_cvcell];
-        //[_converter_sections addObject:[NSString stringWithUTF8String:(char *)attr]];
+        
+        // セクションタイトル国際化対応
         [_converter_sections addObject:NSLocalizedString([@"Section_" stringByAppendingString:[NSString stringWithUTF8String:(char *)attr]],@"SectionTitle")];
 
-        
         xmlXPathFreeContext(context3);
     }
     xmlXPathFreeContext(context);
@@ -165,6 +164,7 @@
     
     cell.textLabel.text       = [_dic objectForKey:@"title"];
     cell.detailTextLabel.text = [_dic objectForKey:@"subtitle"];
+    
     // サブタイトルを複数行表示できるようにする
     cell.detailTextLabel.numberOfLines = 2;
     
@@ -188,6 +188,7 @@
 }
 
 #pragma mark - Exit
+// DetailViewへ遷移するときに呼び出される
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
@@ -206,6 +207,7 @@
         
         DetailViewController *DetailViewController = segue.destinationViewController;
         DetailViewController.converter  = converter;
+        
         // ユーザーデフォルト（画像のソース選択結果）の呼び出し
         NSUserDefaults *userDefaults= [NSUserDefaults standardUserDefaults];
         DetailViewController.img_source = [userDefaults integerForKey:@"kIndex"];

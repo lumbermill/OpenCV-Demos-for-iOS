@@ -35,8 +35,7 @@
     for(int i = 0; i < contours.size(); ++i) {
         size_t count = contours[i].size();
         
-        if(count < 10+self.gain*300 || count > 100+self.gain*2000) continue;
-        //if(count < 150 || count > 1000) continue;
+        if(count < 10+self.gain*1000 || count > 10+self.gain2nd*1000) continue;
         // （小さすぎる|大きすぎる）輪郭を除外 スライダ値で可変
 
         cv::Mat pointsf;
@@ -52,8 +51,11 @@
 }
 
 - (NSString *)getGainFormat{
-    return [[NSString stringWithFormat:@"Detect Size\n Max:%.2f",100+self.gain*2000]
-            stringByAppendingFormat:@"\n Min:%.2f",10+self.gain*300];
+    return [NSString stringWithFormat:@"Detect Size\n Min:%.2f",10+self.gain*1000];
+    
+}
+- (NSString *)getGain2ndFormat{
+    return [NSString stringWithFormat:@"Detect Size\n Max:%.2f",10+self.gain2nd*1000];
     
 }
 

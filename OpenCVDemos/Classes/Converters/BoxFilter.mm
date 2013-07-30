@@ -17,7 +17,7 @@
     // 中間画像作成
     cv::Mat work_img = src_img;
 
-    // 入力画像，出力画像，カーネルサイズ，アンカー，正規化の有無
+    // 入力画像，出力画像，出力画像に求めるビット深度．カーネルサイズ，アンカー，正規化の有無
     cv::boxFilter(work_img, work_img, work_img.type(), cv::Size(2,2), cv::Point(-1,-1), false);
 
     return work_img;

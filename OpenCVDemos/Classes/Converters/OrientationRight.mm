@@ -19,10 +19,14 @@
     // 回転： -90 [deg], スケーリング： 1.0 [倍]
     float angle = -90;
     float rotateScale = 1.0;
+    
     // 中心：画像中心
     cv::Point2f center(work_img.cols*0.5, work_img.cols*0.5);
-    // 以上の条件から2次元の回転行列を計算
+    
+    // 2次元の回転行列を計算
     const cv::Mat affine_matrix = cv::getRotationMatrix2D( center, angle, rotateScale );
+    
+    // 回転
     cv::warpAffine(src_img, work_img, affine_matrix, work_img.size());
     
     return work_img;
