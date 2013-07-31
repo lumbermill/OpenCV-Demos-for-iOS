@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "CustomUIActionSheet.h"
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 
@@ -50,7 +51,8 @@
 {
     // アクションシートを作る
     UIActionSheet *actionSheet;
-    actionSheet = [[UIActionSheet alloc]
+    // 横向き対応のため、カスタムクラスを使う
+    actionSheet = [[CustomUIActionSheet alloc]
                    initWithTitle:NSLocalizedString(@"Select Soruce Type",@"Select Soruce Type")
                    delegate:self
                    cancelButtonTitle:NSLocalizedString(@"Cancel",@"Cancel")

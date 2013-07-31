@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "Utils.h"
 #import "AVFUtils.h"
+#import "CustomUIImagePickerController.h"
 
 @implementation DetailViewController {
     AVCaptureSession *session;
@@ -53,6 +54,9 @@ AVCaptureVideoDataOutput *videoOutput;
 AVCaptureConnection *videoConnection;
 BOOL usingFrontCamera = NO;
 
+// アクティビティインジケータ
+UIActivityIndicatorView *indicator;
+
 #pragma mark - Initialize
 - (void)viewDidLoad
 {
@@ -85,6 +89,21 @@ BOOL usingFrontCamera = NO;
     // スライダーが変更されたとき
     [_levelSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [_levelSlider2nd addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    // アクティビティインジケータ作成
+    indicator = [[UIActivityIndicatorView alloc]init];
+    // 位置を指定（画面の中央に表示する）
+    indicator.center = self.view.center;
+    indicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
+    UIViewAutoresizingFlexibleRightMargin |
+    UIViewAutoresizingFlexibleTopMargin |
+    UIViewAutoresizingFlexibleBottomMargin;
+    // スタイルをセット
+    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    indicator.color = [UIColor redColor];
+    // UIActivityIndicatorViewのインスタンスをビューに追加
+    [self.view addSubview:indicator];
+    
 }
 
 // MasterViewへ戻るときのイベント
@@ -165,7 +184,10 @@ BOOL usingFrontCamera = NO;
         // ビデオ入力のAVCaptureConnectionを取得 <- addInputとaddOutputが終わってから
         videoConnection = [videoOutput connectionWithMediaType:AVMediaTypeVideo];
         // 本体の向きをAVFoundationへ通知
+        //  自動的に向きを取得
         videoConnection.videoOrientation = [AVFUtils videoOrientationFromDeviceOrientation:[UIDevice currentDevice].orientation];
+        //  強制的にPortraitで固定（Landscapeをサポートしないとき）
+        //videoConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
         
  
         [session commitConfiguration];
@@ -196,14 +218,52 @@ BOOL usingFrontCamera = NO;
     
     // 画像の加工
     effectImage = [self processWithOpenCV: image];
-        
+    
     // 画像の表示
     self.imageView.image = effectImage;
+    
+    // フロントカメラの場合は左右反転
+    if (usingFrontCamera) {
+        self.imageView.Transform = CGAffineTransformMakeScale(-1.0f, 1.0f);
+    }
+    else {
+        self.imageView.Transform = CGAffineTransformMakeScale(1.0f, 1.0f);        
+    }
     
     //FPS測定
     countFPS++;
 }
 
+// 静止画の変換と表示
+- (void) photoImageViewing {
+    
+    // 画像を選択してないとエラーになるので回避処理
+    if (effBufImage) {
+ 
+        // アクティビティインジケータを表示
+        [indicator startAnimating];
+        // RunLoopに戻らないと表示されないので、一瞬戻す
+        [[NSRunLoop currentRunLoop]runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+        
+        // 画像の加工
+        UIImage *effectImage;
+        effectImage = [self processWithOpenCV: effBufImage];
+        
+        // アクティビティインジケータが動いていたら止める
+        if (indicator.isAnimating) {
+            [indicator stopAnimating];
+        }
+
+        //加工した画像の表示
+        self.imageView.image = effectImage;
+        
+        // 静止画をアルバムに保存
+        //UIImageWriteToSavedPhotosAlbum(effectImage, nil, nil, nil);
+        
+        // インフォメーションラベル更新
+        [self refreshInfoLabel];
+    }
+}
 
 // OpenCV関数を使って画像を変換します
 - (UIImage*) processWithOpenCV: (UIImage*) image
@@ -262,11 +322,11 @@ BOOL usingFrontCamera = NO;
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         
         // イメージピッカーを作る
-        UIImagePickerController*    picker;
-        picker = [[UIImagePickerController alloc] init];
+        // 横向き対応のため、カスタムクラスを使う
+        UIImagePickerController* picker = [[CustomUIImagePickerController alloc]init];
         picker.sourceType = sourceType;
         picker.delegate = self;
-        
+
         // イメージピッカーを表示する
         [self presentViewController:picker animated:YES completion:NULL];
     }
@@ -274,6 +334,7 @@ BOOL usingFrontCamera = NO;
         // エラー処理
         NSLog(@"Photo Err!!");
     }
+    
 }
 
 // UIImagePickerの呼び出し
@@ -283,18 +344,9 @@ BOOL usingFrontCamera = NO;
     
     [self dismissViewControllerAnimated:YES completion:^{
         
-        // 画像の加工
-        UIImage *effectImage;
-        effectImage = [self processWithOpenCV: effBufImage];
-
-        // 加工した画像の表示
-        self.imageView.image = effectImage;
+        // 静止画の変換と表示
+        [self photoImageViewing];
         
-        // 静止画をアルバムに保存
-        //UIImageWriteToSavedPhotosAlbum(effectImage, nil, nil, nil);
-        
-        // インフォメーションラベル更新
-        [self refreshInfoLabel];
     }];
 }
 
@@ -325,35 +377,63 @@ BOOL usingFrontCamera = NO;
             }
         }        
     }
+
     // セッション切り替え
+    [self sessionTransfer];
+    
+}
+
+// デバイス(UIView)回転時に呼び出されるメソッド
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+
+    if(interfaceOrientation == UIInterfaceOrientationPortrait){
+        NSLog(@"ホームボタン下");
+    }
+    else if(interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown){
+        NSLog(@"ホームボタン上");
+    }
+    else if(interfaceOrientation == UIInterfaceOrientationLandscapeLeft){
+        NSLog(@"ホームボタン右");
+    }
+    else if(interfaceOrientation == UIInterfaceOrientationLandscapeRight){
+        NSLog(@"ホームボタン左");
+    }
+
+     if (img_source == 1) {
+        // セッション切り替え
+        [self sessionTransfer];
+     }
+}
+
+// セッション切り替え
+- (void)sessionTransfer {
+
     [session stopRunning];
     [session beginConfiguration];
     [session removeInput:videoInput];
     videoInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
     [session addInput:videoInput];
-    // 本体の向きをAVFoundationへ通知
     videoConnection = [videoOutput connectionWithMediaType:AVMediaTypeVideo];
+    // 本体の向きをAVFoundationへ通知
+      // 自動的に向きを取得
     videoConnection.videoOrientation = [AVFUtils videoOrientationFromDeviceOrientation:[UIDevice currentDevice].orientation];
+      // 強制的にPortraitで固定（Landscapeをサポートしないとき）
+    //videoConnection.videoOrientation = AVCaptureVideoOrientationPortrait;
+    
     [session commitConfiguration];
     [session startRunning];
+
 }
+
 
 
 // Reloadボタンで変換やり直し
 - (IBAction)reloadBtn:(id)sender
 {
     // ソースタイプ：静止画のとき
-    if (img_source != 1) {
-        
-        // 画像の加工
-        UIImage *effectImage;
-        effectImage = [self processWithOpenCV: effBufImage];
-        
-        //加工した画像の表示
-        self.imageView.image = effectImage;
-        
-        // インフォメーションラベル更新
-        [self refreshInfoLabel];
+    if (img_source != 1)
+    {
+        [self photoImageViewing];
     }
     else {
         // リアルタイム変換時は静止画をアルバムに保存
@@ -526,6 +606,8 @@ BOOL usingFrontCamera = NO;
                                         ];
     self.navigationItem.rightBarButtonItem = changeCameraBtn;
 }
+
+
 
 #pragma mark - Error
 //

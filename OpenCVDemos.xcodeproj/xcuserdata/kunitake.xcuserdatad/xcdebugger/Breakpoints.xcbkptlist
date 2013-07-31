@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OpenCVDemos/DetailViewController.mm"
-         timestampString = "396778516.12766"
+         timestampString = "396940988.438798"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "173"
-         endingLineNumber = "173"
+         startingLineNumber = "195"
+         endingLineNumber = "195"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
