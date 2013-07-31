@@ -17,72 +17,72 @@
 "Saved Photos" = "Saved Photos";
 "Cancel" = "Cancel";
 
-"GrayScale_title" = "グレースケール";
-"GrayScale_subtitle" = "グレースケールに変換します";
+"GrayScale_title" = "Gray Scale";
+"GrayScale_subtitle" = "Converts to glay scale";
 
-"Binary_title" = "２値化　Binary";
-"Binary_subtitle" = "閾値以下の値は0に、それ以外を1にします";
+"Binary_title" = "Binary";
+"Binary_subtitle" = "0 less than the threshold, 1 otherwise";
 
-"Trunk_title" = "２値化　Trunk";
-"Trunk_subtitle" = "閾値より大きい値は閾値まで切り詰め、それ以外はそのまま残します";
+"Trunk_title" = "Binary Trunk";
+"Trunk_subtitle" = "v = t if v is more than t";
 
-"ToZero_title" = "２値化　ToZero";
-"ToZero_subtitle" = "閾値より大きい値をそのまま残し、それ以外を0にします";
+"ToZero_title" = "Binary ToZero";
+"ToZero_subtitle" = "v = 0 if v is less than t";
 
-"Adaptive_title" = "２値化　Adaptive";
-"Adaptive_subtitle" = "入力によって閾値が適応的（能動的）に決まります";
+"Adaptive_title" = "Binary Adaptive";
+"Adaptive_subtitle" = "The threshold is determined by the input";
 
-"Sobel_title" = "輪郭検出　Sobel";
-"Sobel_subtitle" = "Sobelオペレータを用いて1次の微分画像を求めます";
+"Sobel_title" = "Edge Detection Sobel";
+"Sobel_subtitle" = "Detects edges using sobel";
 
-"Laplacian_title" = "輪郭検出　Laplacian";
-"Laplacian_subtitle" = "2次微分画像のラプラシアンを求めます";
+"Laplacian_title" = "Edge Detection Laplacian";
+"Laplacian_subtitle" = "Detects edges using laplacian";
 
-"Canny_title" = "輪郭検出　Canny";
-"Canny_subtitle" = "Cannyアルゴリズムを用いて画像のエッジを検出します";
+"Canny_title" = "Edge Detection Canny";
+"Canny_subtitle" = "Detects edges using canny";
 
 
-"Converter_title" = "変換なし";
-"Converter_subtitle" = "-";
+"Converter_title" = "None";
+"Converter_subtitle" = "Do nothing";
 
-"GaussianBlur_title" = "平滑化　GaussianBlur";
-"GaussianBlur_subtitle" = "ガウシアンフィルタを用いてぼかします";
+"GaussianBlur_title" = "Smooth GaussianBlur";
+"GaussianBlur_subtitle" = "Smooths using gaussian filter";
 
-"MedianBlur_title" = "平滑化　MedianBlur";
-"MedianBlur_subtitle" = "メディアンフィルタを用いてぼかします";
+"MedianBlur_title" = "Smooth MedianBlur";
+"MedianBlur_subtitle" = "Smooths using median filter";
 
-"BilateralFilter_title" = "平滑化　BilateralFilter [エラー]";
+"BilateralFilter_title" = "Smooth BilateralFilter [エラー]";
 "BilateralFilter_subtitle" = "バイラテラルフィルタを用いてぼかします";
 
-"BoxFilter_title" = "平滑化　BoxFilter";
-"BoxFilter_subtitle" = "ボックスフィルタを用いてぼかします";
+"BoxFilter_title" = "Smooth BoxFilter";
+"BoxFilter_subtitle" = "Smooths using box filter";
 
-"Blur_title" = "平滑化　Blur";
-"Blur_subtitle" = "正規化されたボックスフィルタを用いてぼかします";
+"Blur_title" = "Smooth Blur";
+"Blur_subtitle" = "Smooths image";
 
-"K_means_title" = "減色化　K-means";
-"K_means_subtitle" = "K-meansによってピクセル値のクラスタリングを行います";
+"K_means_title" = "K-means";
+"K_means_subtitle" = "Clusters the pixels by K-means";
 
-"CircleDetection_title" = "円検出";
-"CircleDetection_subtitle" = "円を検出します";
+"CircleDetection_title" = "Hough Circle Transform";
+"CircleDetection_subtitle" = "Detects circles";
 
-"EllipticalFitting_title" = "楕円フィッティング";
-"EllipticalFitting_subtitle" = "画像から輪郭を検出し、楕円フィッティングを行います";
+"EllipticalFitting_title" = "Ellipse Fitting";
+"EllipticalFitting_subtitle" = "Fits ellipses to detected edges";
 
-"Houghlines_title" = "直線検出 古典的Hough";
-"Houghlines_subtitle" = "標準ハフ変換を用いて2値画像から直線を検出します";
+"Houghlines_title" = "Hough Line Transform Standard";
+"Houghlines_subtitle" = "Detects lines";
 
-"HoughlinesP_title" = "直線検出 確率的Hough";
-"HoughlinesP_subtitle" = "確率的ハフ変換を用いて2値画像から線分を検出します";
+"HoughlinesP_title" = "Hough Line Transform Probabilistic";
+"HoughlinesP_subtitle" = "Detects line segments";
 
-"ORB_title" = "特徴点検出 ORB";
-"ORB_subtitle" = "ORB検出器を用いて特徴点を検出します";
+"ORB_title" = "Feature Detection ORB";
+"ORB_subtitle" = "Detects features using ORB";
 
-"FaceDetection_title" = "顔検出";
-"FaceDetection_subtitle" = "顔と目を検出し、円で囲みます";
+"FaceDetection_title" = "Face Detection";
+"FaceDetection_subtitle" = "Detects faces and eyes";
 
-"HumanDetection_title" = "人検出";
-"HumanDetection_subtitle" = "立っている人を検出します";
+"HumanDetection_title" = "Human Detection";
+"HumanDetection_subtitle" = "Detects humans who is standing or walking";
 
-"Picturization_title" = "絵画風変換";
-"Picturization_subtitle" = "写真を絵画風に変換します";
+"Picturization_title" = "Picturalize";
+"Picturization_subtitle" = "Generate a painting like picture";
