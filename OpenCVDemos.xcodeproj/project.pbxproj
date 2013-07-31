@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1347B50117A8CE26007F4098 /* converters.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1347B50017A8CE26007F4098 /* converters.txt */; };
 		2255669C17994A040015F7B9 /* haarcascade_eye.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2255669A17994A040015F7B9 /* haarcascade_eye.xml */; };
 		2255669D17994A040015F7B9 /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2255669B17994A040015F7B9 /* haarcascade_frontalface_alt.xml */; };
 		225566A017994FE20015F7B9 /* FaceDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2255669F17994FE20015F7B9 /* FaceDetection.mm */; };
 		225566A617996B950015F7B9 /* converters.xml in Resources */ = {isa = PBXBuildFile; fileRef = 225566A517996B950015F7B9 /* converters.xml */; };
-		225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 225566AB1799749C0015F7B9 /* libxml2.dylib */; };
 		22933DB21798DA44001EB809 /* Converter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22933DB11798DA44001EB809 /* Converter.mm */; };
 		22933DBB1798DC66001EB809 /* NegaPosi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 22933DBA1798DC66001EB809 /* NegaPosi.mm */; };
 		2B1C95FA179E0ABE006700FD /* HumanDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B1C95F9179E0ABE006700FD /* HumanDetection.mm */; };
@@ -64,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1347B50017A8CE26007F4098 /* converters.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = converters.txt; sourceTree = "<group>"; };
 		13A14F5717A7C1D1000736BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		13A14F5817A7C1E1000736BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2255669A17994A040015F7B9 /* haarcascade_eye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_eye.xml; path = OpenCVDemos/Resources.xml/Cascades/haarcascade_eye.xml; sourceTree = SOURCE_ROOT; };
@@ -71,7 +72,6 @@
 		2255669E17994FE20015F7B9 /* FaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetection.h; sourceTree = "<group>"; };
 		2255669F17994FE20015F7B9 /* FaceDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetection.mm; sourceTree = "<group>"; };
 		225566A517996B950015F7B9 /* converters.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = converters.xml; sourceTree = "<group>"; };
-		225566AB1799749C0015F7B9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		22933DB01798DA44001EB809 /* Converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Converter.h; sourceTree = "<group>"; };
 		22933DB11798DA44001EB809 /* Converter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Converter.mm; sourceTree = "<group>"; };
 		22933DB91798DC66001EB809 /* NegaPosi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegaPosi.h; sourceTree = "<group>"; };
@@ -116,7 +116,6 @@
 		2B76D7B017A899E300810831 /* CustomUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIImagePickerController.m; sourceTree = "<group>"; };
 		2B76D7B217A89E2000810831 /* CustomUIActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIActionSheet.h; sourceTree = "<group>"; };
 		2B76D7B317A89E2000810831 /* CustomUIActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIActionSheet.m; sourceTree = "<group>"; };
-		2B76D7B617A8AA1700810831 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2BAE8296179CCC9800E466FE /* Binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binary.h; sourceTree = "<group>"; };
 		2BAE8297179CCC9900E466FE /* Binary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Binary.mm; sourceTree = "<group>"; };
 		2BAE8299179CFB3100E466FE /* GrayScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayScale.h; sourceTree = "<group>"; };
@@ -167,7 +166,6 @@
 			files = (
 				2B37D73A17A2010000A0567E /* QuartzCore.framework in Frameworks */,
 				2B1C95FC179E282D006700FD /* AudioToolbox.framework in Frameworks */,
-				225566AC1799749C0015F7B9 /* libxml2.dylib in Frameworks */,
 				2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */,
 				2B26094317865F3B00BE100A /* CoreVideo.framework in Frameworks */,
 				2B26091D17865C0000BE100A /* CoreGraphics.framework in Frameworks */,
@@ -185,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				225566A517996B950015F7B9 /* converters.xml */,
+				1347B50017A8CE26007F4098 /* converters.txt */,
 			);
 			name = Layouts;
 			path = OpenCVDemos/Resources.xml/Layouts;
@@ -303,7 +302,6 @@
 		2B26091717865C0000BE100A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				225566AB1799749C0015F7B9 /* libxml2.dylib */,
 				2B1C95FB179E282C006700FD /* AudioToolbox.framework */,
 				2B45A57E178BE6D500662FDA /* opencv2.framework */,
 				2B26094217865F3B00BE100A /* CoreVideo.framework */,
@@ -415,6 +413,7 @@
 				2BED74AC179FB31F00FAE147 /* Default@2x.png in Resources */,
 				2BED74AE179FB32A00FAE147 /* Default-568h@2x.png in Resources */,
 				2BED74B0179FB92D00FAE147 /* icon57.png in Resources */,
+				1347B50117A8CE26007F4098 /* converters.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +537,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -546,6 +546,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -560,7 +562,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenCVDemos/OpenCVDemos-Prefix.pch";
-				"HEADER_SEARCH_PATHS[arch=*]" = "\"${SDK_ROOT}/usr/include/libxml2\"";
 				INFOPLIST_FILE = "OpenCVDemos/OpenCVDemos-Info.plist";
 				PRODUCT_NAME = OpenCVDemos;
 				WRAPPER_EXTENSION = app;

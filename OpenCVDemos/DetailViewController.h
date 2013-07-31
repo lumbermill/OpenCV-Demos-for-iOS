@@ -44,7 +44,4 @@
 - (IBAction)reloadBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *reloadBtn;
 
-- (IBAction)backButtonEvent:(id)sender;
-
-
 @end

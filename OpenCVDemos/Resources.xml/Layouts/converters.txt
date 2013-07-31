@@ -1,0 +1,25 @@
+Monochrome
+  GrayScale
+  Binary
+  Trunk
+  ToZero
+  Adaptive
+  Sobel
+  Laplacian
+  Canny
+Full Color
+  Converter
+  GaussianBlur
+  MedianBlur
+#  BilateralFilter
+  BoxFilter
+  Blur
+  K_means
+  CircleDetection
+  EllipticalFitting
+  Houghlines
+  HoughlinesP
+  ORB
+  FaceDetection
+  HumanDetection
+  Picturization

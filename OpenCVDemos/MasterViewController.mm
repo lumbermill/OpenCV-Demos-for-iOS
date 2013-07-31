@@ -9,8 +9,6 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "CustomUIActionSheet.h"
-#include <libxml/parser.h>
-#include <libxml/xpath.h>
 
 @interface MasterViewController () {
     NSMutableArray *_converters;
@@ -74,72 +72,47 @@
 #pragma mark - Table View
 - (void)makeConvertersTable
 {
-    // Converterクラスのテーブル作成
-    xmlChar *_xp_cvs= (xmlChar*)[@"//Converters"     cStringUsingEncoding:NSUTF8StringEncoding];
-    xmlChar *_xp_cv = (xmlChar*)[@"/Converter"       cStringUsingEncoding:NSUTF8StringEncoding];
-    xmlChar *_xp_cl = (xmlChar*)[@"/class/text()"    cStringUsingEncoding:NSUTF8StringEncoding];
     
     // xmlファイルのパス
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *resourceDirectoryPath = [bundle bundlePath];
-    NSString *filename = [resourceDirectoryPath stringByAppendingString:@"/converters.xml"];
-    // xpathコンテキスト作成
-    xmlDocPtr document = xmlParseFile([filename cStringUsingEncoding:NSUTF8StringEncoding]);
-    xmlXPathContextPtr context = xmlXPathNewContext(document);
-    // xpathに対応するノードのオブジェクトを取得
-    xmlXPathObjectPtr result = xmlXPathEvalExpression( _xp_cvs, context );
-    xmlNodeSetPtr nodeset = result->nodesetval;
+    NSString *filename = [resourceDirectoryPath stringByAppendingString:@"/converters.txt"];
     
     _converters = [[NSMutableArray alloc] init];
     _converter_sections = [[NSMutableArray alloc] init];
     
     // セクションの数だけ繰り返し
-    for (int j=0; j<nodeset->nodeNr; j++) {
-        xmlNodePtr node3 = xmlXPathNodeSetItem(nodeset, j);
-        xmlXPathContextPtr context3 = xmlXPathNewContext((xmlDocPtr)node3);
-    
-        xmlXPathObjectPtr result3 = xmlXPathEvalExpression( _xp_cv, context3 );
-        xmlNodeSetPtr nodeset3 = result3->nodesetval;
-        NSMutableArray *_cvcell = [[NSMutableArray alloc] init];
-        
-        xmlChar *attr = xmlGetProp(nodeset->nodeTab[j], (const xmlChar*)"section");
-        
-        // セルの数だけ繰り返し
-        for (int i=0; i<nodeset3->nodeNr; i++) {
-            xmlNodePtr node2 = xmlXPathNodeSetItem(nodeset3, i);
-            xmlXPathContextPtr context2 = xmlXPathNewContext((xmlDocPtr)node2);
-            
-            xmlNodeSetPtr result21 = xmlXPathEvalExpression(_xp_cl, context2)->nodesetval;
-            
+    NSString *content = [NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:nil];
+    NSArray *lines = [content componentsSeparatedByString:@"\n"];
+    NSMutableArray *_cells = nil;
+    for (NSString *line in lines) {
+        if ([line hasPrefix:@"#"]){
+            // Do nothing.
+        }else if ([line hasPrefix:@"  "]) {
             NSMutableDictionary *_dic =  [NSMutableDictionary dictionary];
-            NSString *classname = [NSString stringWithUTF8String:(char *)result21->nodeTab[0]->content];
+            NSString *classname = [line substringFromIndex:2];
             
-            [_dic setObject:[NSString stringWithUTF8String:(char *)result21->nodeTab[0]->content] forKey:@"class"];
+            [_dic setObject:classname forKey:@"class"];
             // タイトル国際化対応
             [_dic setObject:NSLocalizedString([classname stringByAppendingString:@"_title"],@"title") forKey:@"title"];
             // サブタイトル国際化対応
             [_dic setObject:NSLocalizedString([classname stringByAppendingString:@"_subtitle"],@"subtitle") forKey:@"subtitle"];
             
-            [_cvcell addObject:_dic];
-            
-            xmlXPathFreeContext(context2);
+            [_cells addObject:_dic];
+        }else{
+            if(_cells != nil) [_converters addObject:_cells];
+            // セクションタイトル国際化対応
+            [_converter_sections addObject:NSLocalizedString([@"Section_" stringByAppendingString:line],@"SectionTitle")];
+            _cells = [[NSMutableArray alloc] init];
         }
-        
-        [_converters addObject:_cvcell];
-        
-        // セクションタイトル国際化対応
-        [_converter_sections addObject:NSLocalizedString([@"Section_" stringByAppendingString:[NSString stringWithUTF8String:(char *)attr]],@"SectionTitle")];
-
-        xmlXPathFreeContext(context3);
     }
-    xmlXPathFreeContext(context);
-    
+    if(_cells != nil) [_converters addObject:_cells];
 }
 
 // セクション数を決める
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return [_converter_sections count];
 }
 
 // セクションタイトル入力
