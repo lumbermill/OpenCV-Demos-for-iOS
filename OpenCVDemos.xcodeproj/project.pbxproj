@@ -62,6 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13A14F5717A7C1D1000736BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
+		13A14F5817A7C1E1000736BD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2255669A17994A040015F7B9 /* haarcascade_eye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_eye.xml; path = OpenCVDemos/Resources.xml/Cascades/haarcascade_eye.xml; sourceTree = SOURCE_ROOT; };
 		2255669B17994A040015F7B9 /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = haarcascade_frontalface_alt.xml; path = OpenCVDemos/Resources.xml/Cascades/haarcascade_frontalface_alt.xml; sourceTree = SOURCE_ROOT; };
 		2255669E17994FE20015F7B9 /* FaceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetection.h; sourceTree = "<group>"; };
@@ -103,13 +105,11 @@
 		2B37D73E17A267F000A0567E /* OrientationRight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrientationRight.h; sourceTree = "<group>"; };
 		2B37D73F17A267F000A0567E /* OrientationRight.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OrientationRight.mm; sourceTree = "<group>"; };
 		2B37D74117A281A100A0567E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		2B37D74317A2822100A0567E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2B45A57E178BE6D500662FDA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		2B4A21F917A0F5CC001567EF /* CircleDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetection.h; sourceTree = "<group>"; };
 		2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CircleDetection.mm; sourceTree = "<group>"; };
 		2B54A4A917A623AB009522F4 /* Picturization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picturization.h; sourceTree = "<group>"; };
 		2B54A4AA17A623AC009522F4 /* Picturization.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Picturization.mm; sourceTree = "<group>"; };
-		2B54A4AF17A6639F009522F4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		2BAE8296179CCC9800E466FE /* Binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binary.h; sourceTree = "<group>"; };
 		2BAE8297179CCC9900E466FE /* Binary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Binary.mm; sourceTree = "<group>"; };
 		2BAE8299179CFB3100E466FE /* GrayScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayScale.h; sourceTree = "<group>"; };
@@ -473,8 +473,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				2B37D74117A281A100A0567E /* Base */,
-				2B37D74317A2822100A0567E /* en */,
-				2B54A4AF17A6639F009522F4 /* ja */,
+				13A14F5717A7C1D1000736BD /* en */,
+				13A14F5817A7C1E1000736BD /* ja */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

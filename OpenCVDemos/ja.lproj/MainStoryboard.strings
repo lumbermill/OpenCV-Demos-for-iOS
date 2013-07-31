@@ -9,7 +9,7 @@
 "26.title" = "Image viewer";
 
 /* Class = "IBUINavigationItem"; title = "OpenCV functions"; ObjectID = "36"; */
-"36.title" = "OpenCV functions";
+"36.title" = "OpenCV 関数";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "900-Ac-EX7"; */
 "900-Ac-EX7.text" = "Subtitle";
