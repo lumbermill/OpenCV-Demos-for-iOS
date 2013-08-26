@@ -86,3 +86,9 @@
 
 "Picturization_title" = "絵画風変換";
 "Picturization_subtitle" = "写真を絵画風に変換します";
+
+"CannyMonitor_title" = "実験用";
+"CannyMonitor_subtitle" = "直線検出の元画像を可視化";
+
+"ShelfManager_title" = "棚割支援";
+"ShelfManager_subtitle" = "棚板を検出します";

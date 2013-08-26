@@ -99,5 +99,13 @@
             <class>Picturization</class>
         </Converter>
         
+        <Converter>
+            <class>CannyMonitor</class>
+        </Converter>
+        
+        <Converter>
+            <class>ShelfManager</class>
+        </Converter>
+        
     </Converters>
 </Layout>

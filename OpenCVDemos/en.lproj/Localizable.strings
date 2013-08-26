@@ -86,3 +86,6 @@
 
 "Picturization_title" = "Picturalize";
 "Picturization_subtitle" = "Generate a painting like picture";
+
+"ShelfManager_title" = "棚割支援";
+"ShelfManager_subtitle" = "棚板を検出します";
