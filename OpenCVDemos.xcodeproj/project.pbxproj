@@ -36,8 +36,10 @@
 		2B45A57F178BE6D500662FDA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B45A57E178BE6D500662FDA /* opencv2.framework */; };
 		2B4621AF17CAEF6800B42064 /* CannyMonitor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4621AE17CAEF6800B42064 /* CannyMonitor.mm */; };
 		2B4621B217CAEF9B00B42064 /* ShelfManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4621B117CAEF9B00B42064 /* ShelfManager.mm */; };
+		2B4621B517CB325000B42064 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4621B417CB325000B42064 /* FileManager.m */; };
 		2B4A21FB17A0F5CC001567EF /* CircleDetection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */; };
 		2B54A4AB17A623AD009522F4 /* Picturization.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B54A4AA17A623AC009522F4 /* Picturization.mm */; };
+		2B6AF95317CC4A0300D7CFC4 /* CutImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AF95217CC4A0300D7CFC4 /* CutImage.mm */; };
 		2B76D7B117A899E400810831 /* CustomUIImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76D7B017A899E300810831 /* CustomUIImagePickerController.m */; };
 		2B76D7B417A89E2000810831 /* CustomUIActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76D7B317A89E2000810831 /* CustomUIActionSheet.m */; };
 		2BAE8298179CCC9900E466FE /* Binary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE8297179CCC9900E466FE /* Binary.mm */; };
@@ -114,10 +116,14 @@
 		2B4621AE17CAEF6800B42064 /* CannyMonitor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CannyMonitor.mm; sourceTree = "<group>"; };
 		2B4621B017CAEF9B00B42064 /* ShelfManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfManager.h; sourceTree = "<group>"; };
 		2B4621B117CAEF9B00B42064 /* ShelfManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShelfManager.mm; sourceTree = "<group>"; };
+		2B4621B317CB325000B42064 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		2B4621B417CB325000B42064 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		2B4A21F917A0F5CC001567EF /* CircleDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetection.h; sourceTree = "<group>"; };
 		2B4A21FA17A0F5CC001567EF /* CircleDetection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CircleDetection.mm; sourceTree = "<group>"; };
 		2B54A4A917A623AB009522F4 /* Picturization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picturization.h; sourceTree = "<group>"; };
 		2B54A4AA17A623AC009522F4 /* Picturization.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Picturization.mm; sourceTree = "<group>"; };
+		2B6AF95117CC4A0300D7CFC4 /* CutImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutImage.h; sourceTree = "<group>"; };
+		2B6AF95217CC4A0300D7CFC4 /* CutImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CutImage.mm; sourceTree = "<group>"; };
 		2B76D7AF17A899E300810831 /* CustomUIImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIImagePickerController.h; sourceTree = "<group>"; };
 		2B76D7B017A899E300810831 /* CustomUIImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUIImagePickerController.m; sourceTree = "<group>"; };
 		2B76D7B217A89E2000810831 /* CustomUIActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUIActionSheet.h; sourceTree = "<group>"; };
@@ -206,6 +212,8 @@
 				2B76D7B317A89E2000810831 /* CustomUIActionSheet.m */,
 				2B76D7AF17A899E300810831 /* CustomUIImagePickerController.h */,
 				2B76D7B017A899E300810831 /* CustomUIImagePickerController.m */,
+				2B4621B317CB325000B42064 /* FileManager.h */,
+				2B4621B417CB325000B42064 /* FileManager.m */,
 				22933DA91798D735001EB809 /* Converters */,
 				22933DB01798DA44001EB809 /* Converter.h */,
 				22933DB11798DA44001EB809 /* Converter.mm */,
@@ -266,6 +274,8 @@
 				2B54A4AA17A623AC009522F4 /* Picturization.mm */,
 				2B4621AD17CAEF6800B42064 /* CannyMonitor.h */,
 				2B4621AE17CAEF6800B42064 /* CannyMonitor.mm */,
+				2B6AF95117CC4A0300D7CFC4 /* CutImage.h */,
+				2B6AF95217CC4A0300D7CFC4 /* CutImage.mm */,
 				2B4621B017CAEF9B00B42064 /* ShelfManager.h */,
 				2B4621B117CAEF9B00B42064 /* ShelfManager.mm */,
 			);
@@ -469,6 +479,8 @@
 				2B76D7B417A89E2000810831 /* CustomUIActionSheet.m in Sources */,
 				2B4621AF17CAEF6800B42064 /* CannyMonitor.mm in Sources */,
 				2B4621B217CAEF9B00B42064 /* ShelfManager.mm in Sources */,
+				2B4621B517CB325000B42064 /* FileManager.m in Sources */,
+				2B6AF95317CC4A0300D7CFC4 /* CutImage.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -253,7 +253,7 @@ UIActivityIndicatorView *indicator;
         if (indicator.isAnimating) {
             [indicator stopAnimating];
         }
-
+        
         //加工した画像の表示
         self.imageView.image = effectImage;
         

@@ -104,6 +104,10 @@
         </Converter>
         
         <Converter>
+            <class>CutImage</class>
+        </Converter>
+        
+        <Converter>
             <class>ShelfManager</class>
         </Converter>
         

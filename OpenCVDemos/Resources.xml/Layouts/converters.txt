@@ -24,4 +24,5 @@ Full Color
   HumanDetection
   Picturization
   CannyMonitor
+  CutImage
   ShelfManager
