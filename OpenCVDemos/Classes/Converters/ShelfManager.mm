@@ -111,6 +111,13 @@
 
     // 保存ディレクトリを指定
     NSString* docDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/shelf-manager"];
+    
+    if ([FileManager fileExistsAtPath:docDir]) {
+        // なにもしない
+    } else {
+        [FileManager createDirectory:docDir];
+    }
+    
     // 保存ディレクトリ＋ファイル名を指定
     NSString *photoFilePathJPG;
     NSString *photoFilePathPNG;

@@ -8,7 +8,7 @@
 
 #import "Utils.h"
 #import <Foundation/Foundation.h>
-//#import <CoreImage/CoreImage.h>
+#import "FileManager.h"
 
 @interface Converter : NSObject
 

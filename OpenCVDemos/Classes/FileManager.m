@@ -10,17 +10,29 @@
 
 @implementation FileManager
 
-- (NSString*)temporaryDirectory
++ (NSString*)temporaryDirectory
 {
     return NSTemporaryDirectory();
 }
 
-- (NSString*)temporaryDirectoryWithFileName:(NSString*)fileName
++ (NSString*)temporaryDirectoryWithFileName:(NSString*)fileName
 {
     return [[self temporaryDirectory] stringByAppendingPathComponent:fileName];
 }
 
-- (NSString*)documentDirectory
++ (void)createDirectory:(NSString *)path
+{
+    // NSFileManagerを取得 (非スレッドセーフ)
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // ディレクトリを作成
+    [fileManager createDirectoryAtPath: path    // (NSString*) 作成したいディレクトリパス
+           withIntermediateDirectories: YES     // (BOOL) 中間ディレクトリが存在しないときに作成するか否か
+                            attributes: nil     // (NSDictionary*) ディレクトリの属性
+                                 error: NULL];  // (NSError**) エラー
+}
+
++ (NSString*)documentDirectory
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(
                                                          NSDocumentDirectory,
@@ -29,12 +41,12 @@
     return [paths objectAtIndex:0];
 }
 
-- (NSString*)documentDirectoryWithFileName:(NSString*)fileName
++ (NSString*)documentDirectoryWithFileName:(NSString*)fileName
 {
     return [[self documentDirectory] stringByAppendingPathComponent:fileName];
 }
 
-- (BOOL)fileExistsAtPath:(NSString*)path
++ (BOOL)fileExistsAtPath:(NSString*)path
 {
     NSFileManager* fileManager = [[NSFileManager alloc] init];
     /* ファイルが存在するか */
@@ -45,7 +57,7 @@
     }
 }
 
-- (BOOL)isElapsedFileModificationDateWithPath:(NSString*)path elapsedTimeInterval:(NSTimeInterval)elapsedTime
++ (BOOL)isElapsedFileModificationDateWithPath:(NSString*)path elapsedTimeInterval:(NSTimeInterval)elapsedTime
 {
     if ([self fileExistsAtPath:path]) {
         NSError *error = nil;
@@ -65,7 +77,7 @@
     return NO;
 }
 
-- (NSArray*)fileNamesAtDirectoryPath:(NSString*)directoryPath extension:(NSString*)extension
++ (NSArray*)fileNamesAtDirectoryPath:(NSString*)directoryPath extension:(NSString*)extension
 {
     NSFileManager *fileManager=[[NSFileManager alloc] init];
     NSError *error = nil;
@@ -82,7 +94,7 @@
     return hitFileNames;
 }
 
-- (BOOL)removeFilePath:(NSString*)path
++ (BOOL)removeFilePath:(NSString*)path
 {
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     return [fileManager removeItemAtPath:path error:NULL];
