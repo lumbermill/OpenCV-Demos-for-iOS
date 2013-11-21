@@ -211,16 +211,20 @@ UIActivityIndicatorView *indicator;
 // キャプチャ中は常に呼び出される
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
 {
- 
+    // イメージバッファの取得
+    CVImageBufferRef buffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(buffer, 0);
+
+    uint8_t* base = (uint8_t*)CVPixelBufferGetBaseAddress(buffer);
+    size_t width = CVPixelBufferGetWidth(buffer);
+    size_t height = CVPixelBufferGetHeight(buffer);
+    cv::Mat src = cv::Mat(height,width,CV_8UC4,base);
+
     // イメージバッファから画像を作成
-    UIImage *image = [AVFUtils imageFromSampleBuffer:sampleBuffer];
-    UIImage*  effectImage;
+    //UIImage *image = [AVFUtils imageFromSampleBuffer:sampleBuffer];
     
     // 画像の加工
-    effectImage = [self processWithOpenCV: image];
-    
-    // 画像の表示
-    self.imageView.image = effectImage;
+    self.imageView.image = [self processWithOpenCV: src];
     
     // フロントカメラの場合は左右反転
     if (usingFrontCamera) {
@@ -229,6 +233,7 @@ UIActivityIndicatorView *indicator;
     else {
         self.imageView.Transform = CGAffineTransformMakeScale(1.0f, 1.0f);        
     }
+    CVPixelBufferUnlockBaseAddress(buffer, 0);
     
     //FPS測定
     countFPS++;
@@ -246,8 +251,9 @@ UIActivityIndicatorView *indicator;
         [[NSRunLoop currentRunLoop]runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
         
         // 画像の加工
+        cv::Mat src = [Utils CVMatFromUIImage:effBufImage];
         UIImage *effectImage;
-        effectImage = [self processWithOpenCV: effBufImage];
+        effectImage = [self processWithOpenCV: src];
         
         // アクティビティインジケータが動いていたら止める
         if (indicator.isAnimating) {
@@ -266,10 +272,10 @@ UIActivityIndicatorView *indicator;
 }
 
 // OpenCV関数を使って画像を変換します
-- (UIImage*) processWithOpenCV: (UIImage*) image
+- (UIImage*) processWithOpenCV: (cv::Mat) src_img
 {
     // 元となる画像の定義
-    cv::Mat src_img = [Utils CVMatFromUIImage:image];
+    // cv::Mat src_img = [Utils CVMatFromUIImage:image];
     
     // Saved Photos 選択時は変換前に回転させる
     if (img_source == 2) {
@@ -278,6 +284,9 @@ UIActivityIndicatorView *indicator;
     
    // 変換処理
     src_img = [converter convert:src_img];
+    if(src_img.channels() >= 3){
+        cv::cvtColor(src_img, src_img, CV_BGR2RGB);
+    }
     
     // ネガポジ反転有効時
     if (invertSW) {

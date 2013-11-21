@@ -13,6 +13,7 @@
 @interface MasterViewController () {
     NSMutableArray *_converters;
     NSMutableArray *_converter_sections;
+    BOOL selected;
 }
 @end
 
@@ -37,11 +38,15 @@
     
     self.navigationItem.rightBarButtonItem = refreshBtn;
     
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
     // テーブルビューを表示
     [self makeConvertersTable];
     
     // アクションシートを表示させる
-    [self actionSheetRefresh];
+    if(!selected) [self actionSheetRefresh];
 }
 
 #pragma mark - Action Sheet
@@ -59,6 +64,7 @@
     
     // アクションシートを表示する
     [actionSheet showInView:self.view];
+    selected = YES;
 }
 
 // アクションシートで選択されたときの処理
@@ -107,6 +113,8 @@
         }
     }
     if(_cells != nil) [_converters addObject:_cells];
+    
+    [self.tableView reloadData];
 }
 
 // セクション数を決める
